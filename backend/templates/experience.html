@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<main role="main">
+  <!-- <section class="jumbotron text-center bg-lime">
+    <div class="container text-light">
+      <h1><span style="text-transform: lowercase">i</span>nter<strong>N</strong>ito</h1>
+      <p class="mt-2 lead text-light">
+        A platform where you can go through the <h5><b>Students' Interview Experiences</b></h5>
+        and can learn from their experiences and mistakes.
+      </p>
+
+      <p>
+        <a href="#" class="btn btn-secondary my-2">Write Yours Now!!!</a>
+      </p>
+    </div>
+  </section> -->
+
+  <div class="album py-5 bg-lime-invert">
+    <div class="container">
+      <h1 class="mb-4"><div class="head p-2">{{message}}</div></h1>
+      <div class="row">
+        {% for response in responses %}
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body p-5">
+              <p class="card-text">
+                {{response.summary}} - {{response.name}}
+              </p>
+              <div class="d-flex justify-content-center align-items-center mt-4">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                </div>
+              </div>
+              
+              <small class="text-muted" style="float:right">9 mins</small>
+            </div>
+          </div>
+        </div>          
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+</main>
+{% endblock content %}
+    

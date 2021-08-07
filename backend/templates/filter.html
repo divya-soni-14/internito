@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<main role="main">
+  <div class="text-center">
+    <h2>Search By Company</h2>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <datalist id="suggestions">
+        {% for company in companies %}
+          <option value="{{ company }}">{{ company}}</option>
+        {% endfor %}
+    </datalist>
+    <input name="company" autoComplete="on" list="suggestions" required/> 
+    <input type="submit" value="Filter">
+    </form>
+</div>  
+
+
+</main>
+{% endblock content %}
+    
