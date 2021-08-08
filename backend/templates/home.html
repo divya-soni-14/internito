@@ -2,26 +2,78 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/experience.css' %}" />
+
+<style>
+  .card {
+  background-color: white;
+  border-radius: 30px;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.name {
+  font-weight: 500;
+  margin-bottom: 0px;
+  font-size: 1.2rem;
+}
+
+.company {
+  font-size: 0.8rem;
+  text-transform: lowercase;
+  color: rgb(99, 99, 99);
+}
+
+.company strong {
+  font-weight: 600;
+}
+
+.view-btn {
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #76b852;
+  border-radius: 45px;
+  border: 1px solid white;
+}
+
+.view-btn:hover {
+  color: black;
+  border-radius: 45px;
+  border: 1px solid #76b852;
+  background-color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+.view-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+</style>
 
 <main role="main">
   <section class="jumbotron text-center bg-lime">
     <div class="container text-light">
-      <h1><span style="text-transform: lowercase">i</span>nter<strong>N</strong>ito</h1>
+      <h1><strong>inter<big style="color: black;">N</big>ito</strong></h1>
       <p class="mt-2 lead text-light">
-        A platform where you can go through the <h5><b>Students' Interview Experiences</b></h5>
-        and can learn from their experiences and mistakes.
+        Get to know students experience of their intern
       </p>
-
-      <p>
-        <a href="#" class="btn btn-secondary my-2">Write Yours Now!!!</a>
-      </p>
+      <button type="button" 
+        class="
+          btn 
+          view-btn">
+          Tell Us Yours Now!!
+      </button>
     </div>
   </section>
-
-  <div class="album py-5 bg-lime-invert">
+    
+  <!-- <div class="album py-5 bg-lime-invert">
     <div class="container">
-      <h1 class="mb-4"><div class="head p-2">Latest Interview Experiences</div></h1>
+      <h1 class="mb-4"><div class="head p-2">Latest Interview Experiences</div>
+      </h1>
       <div class="row">
         {% for response in responses %}
         <div class="col-md-4">
@@ -43,8 +95,46 @@
         {% endfor %}
       </div>
     </div>
+  </div> -->
+
+    <div class="album py-5 bg-lime-invert">
+    <div class="container">
+      <h1 class="mb-4">
+        <div class="head p-2" style="text-align: center;">Latest Interview Experiences</div>
+      </h1>
+      <div class="row">
+        {% for response in responses %}
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body p-5 summary-parent">
+              <p
+                class="card-text summary summary-text"
+                style="height: 10ch; text-overflow: ellipsis; overflow: hidden"
+              >
+                {{response.summary }}
+              </p>
+              <p class="card-text name">{{response.name}}</p>
+              <p class="card-text company capitalize">
+                interned at <strong>{{response.company}}</strong>
+              </p>
+
+              <button
+                type="button"
+                class="
+                  btn btn-sm btn-outline-secondary
+                  view-btn
+                  w-100
+                  text-center
+                ">
+                View
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-  
 </main>
 {% endblock content %}
-    
+

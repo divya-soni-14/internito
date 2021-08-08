@@ -1,8 +1,7 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- <link rel="stylesheet" href="{% static 'css/register.css' %}" /> -->
+<link rel="stylesheet" href="{% static 'css/experience.css' %}" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <main role="main">
   <!-- <section class="jumbotron text-center bg-lime">
@@ -21,30 +20,47 @@
 
   <div class="album py-5 bg-lime-invert">
     <div class="container">
-      <h1 class="mb-4"><div class="head p-2">{{message}}</div></h1>
-      <div class="row">
-        {% for response in responses %}
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <div class="card-body p-5">
-              <p class="card-text">
-                {{response.summary}} - {{response.name}}
-              </p>
-              <div class="d-flex justify-content-center align-items-center mt-4">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+      <h1 class="mb-4 justify-content-center">
+        <div class="head p-2 justify-content-center">{{message}}</div>
+      </h1>
+      {% regroup responses by company as company_lists %}
+      {% for company_list in company_lists %}
+      <p><strong>{{company_list.grouper}}</strong></p>
+      <div class="row">        
+                {% for response in company_list.list %}
+                <div class="col-md-4">
+                  <div class="card mb-4 box-shadow">
+                    <div class="card-body p-5 summary-parent">
+                      <p
+                        class="card-text summary summary-text"
+                        style="height: 10ch; text-overflow: ellipsis; overflow: hidden"
+                      >
+                        {{response.summary }}
+                      </p>
+                      <p class="card-text name">{{response.name}}</p>
+                      <p class="card-text company capitalize">
+                        interned at <strong>{{response.company}}</strong>
+                      </p>
+
+                      <button
+                        type="button"
+                        class="
+                          btn btn-sm btn-outline-secondary
+                          view-btn
+                          w-100
+                          text-center
+                        "
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              
-              <small class="text-muted" style="float:right">9 mins</small>
-            </div>
-          </div>
-        </div>          
-        {% endfor %}
+                {% endfor %}          
       </div>
+      {% endfor %}
     </div>
   </div>
-  
+  <script></script>
 </main>
 {% endblock content %}
-    

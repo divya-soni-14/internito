@@ -1,13 +1,71 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<style>
+  * {
+    font-family: 'Poppins', sans-serif !important;
+  }
 
+  @media only screen and (max-width: 50rem) {
+    .form-group {
+      margin: 20px !important;
+    }
+  }
 
-{% block content %}
+  body {
+    background-color: #e5e5e5;
+  }
 
+  .title {
+    text-align: center;
+    font-size: 3rem !important;
+    font-weight: 200;
+    margin: 50px auto;
+    margin-top: 100px;
+  }
 
+  .view-btn {
+    padding: 7px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: white;
+    border-radius: 45px;
+    border: 1px solid #76b852;
+    background-color: #76b852;
+    outline: none;
+    box-shadow: none;
+    width: 80%;
+    margin: 20px auto;
+  }
+
+  .view-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  input {
+    border-radius: 30px !important;
+  }
+</style>
 <main role="main">
-  <div class="text-center">
+  <h2 class="title">Search Experiences by <strong> Company</strong></h2>
+  <form action="" method="POST">
+    <div class="form-group text-center" style="max-width: 50rem; margin: auto">
+      {% csrf_token %}
+      <datalist id="suggestions">
+        {% for company in companies %}
+        <option value="{{ company }}">{{ company}}</option>
+        <!-- Divya -->
+        {% endfor %}
+      </datalist>
+      <input class="form-control form-control-lg" list="suggestions" id="suggestions" placeholder="Enter a company name"
+        autocomplete="on" required name="company" />
+      <!-- <input name="company" autocomplete="on" list="suggestions" required /> -->
+      <input class="btn view-btn" type="submit" value="filter" />
+    </div>
+  </form>
+
+  <!-- <div class="text-center">
     <h2>Search By Company</h2>
-    <form action="" method="POST">
+    <form class="" action="" method="POST">
       {% csrf_token %}
       <datalist id="suggestions">
         {% for company in companies %}
@@ -17,9 +75,6 @@
     <input name="company" autoComplete="on" list="suggestions" required/> 
     <input type="submit" value="Filter">
     </form>
-</div>  
-
-
+</div>   -->
 </main>
 {% endblock content %}
-    

@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #E5E5E5;
+    }
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .view-btn {
+        padding: 7px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: #76b852;
+        background-color: white;
+        border-radius: 45px;
+        border: 1px solid #76b852;
+        width: 100%;
+    }
+
+    .view-btn:hover {
+        color: white;
+        border-radius: 45px;
+        border: 1px solid #76b852;
+        background-color: #76b852;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .view-btn:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: #76b852;
+        font-weight: 500;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #76b852;
+        font-weight: 600;
+    }
+
+    textarea:focus {
+        outline: #76b852;
+        border-color: #76b852;
+    }
+
+    .register-text {
+        margin-top: 10px;
+        margin-left: 5px
+    }
+
+    h2 {
+        font-weight: 400;
+    }
+
+    .card {
+        border-radius: 30px;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .card {
+            margin: 20px !important;
+        }
+    }
+</style>
+
+<div class="card mt-5" style="max-width: 80%; margin: 20px auto;">
+    <div class="card-body justify-content-center">
+        <h2 class="card-title text-center mb-4 mt-2">Fill the Form Below</h2>
+        <form action="">
+            <div class="form-group">
+                <details>
+                    <summary>Name</summary>
+                    <input type="text name" type="name" name="name" placeholder="Name" required="" class="form-control">
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Email</summary>
+                    <input type="text email" type="email" name="email" placeholder="Email" required="" class="form-control">
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Batch</summary>
+                    <select type="select" name="batch" placeholder="Batch" required="" class="form-control">
+                        <option>Select</option>
+                        <option>2018-2022</option>
+                        <option>2019-2023</option>
+                        <option>2020-2024</option>
+                    </select>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Company Name</summary>
+                    <input type="company" name="company" placeholder="Company Name" required="" class="form-control">
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Upload Resume</summary>
+                    <input type="url" name="resume" placeholder="Upload link to your resume" required="" class="form-control">
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Please tell about OT</summary>
+                    <textarea type="textarea" name="about" placeholder="Please tell us about OT" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Question 1 of OT</summary>
+                    <textarea type="textarea" name="about" placeholder="Question 1 of OT" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Question 2 of OT</summary>
+                    <textarea type="textarea" name="about" placeholder="Question 2 of OT" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Question 3 of OT</summary>
+                    <textarea type="textarea" name="about" placeholder="Question 3 of OT" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Comments/Suggestions for OT</summary>
+                    <textarea type="textarea" name="about" placeholder="Comments/Suggestions for OT" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Round 1 of Interview</summary>
+                    <textarea type="textarea" name="about" placeholder="Round 1 of Interview" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Round 2 of Interview</summary>
+                    <textarea type="textarea" name="about" placeholder="Round 2 of Interview" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Round 3 of Interview</summary>
+                    <textarea type="textarea" name="about" placeholder="Round 3 of Interview" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Final Comments</summary>
+                    <textarea type="textarea" name="about" placeholder="Final Comments" required="" class="form-control"></textarea>
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>CGPA Cutoff</summary>
+                    <input type="text cgpa" type="cgpa" name="cgpa" placeholder="CGPA" required="" class="form-control">
+                </details>
+            </div>
+            <div class="form-group">
+                <details>
+                    <summary>Applicable Branches</summary>
+                    <br>
+                    <input type="checkbox" name="branches" required="" class="form-group">
+                    <label for="CSE">CSE</label>
+                    <br>
+                    <input type="checkbox" name="branches" required="" class="form-group">
+                    <label for="ECE">ECE</label>
+                    <br>
+                    <input type="checkbox" name="branches" required="" class="form-group">
+                    <label for="EEE">EEE</label>
+                    <br>
+                    <input type="checkbox" name="branches" required="" class="form-group">
+                    <label for="mech">Mech</label>
+                    <br>
+                    <input type="checkbox" name="branches" required="" class="form-group">
+                    <label for="chem">ChemE</label>
+                    <br>
+                    <input type="checkbox" name="branches" required="" class="form-group">
+                    <label for="civil">Civil</label>
+                    <br>
+                    <input type="checkbox" name="branches" required="" class="form-group">
+                    <label for="Biotech">Biotech</label>
+                </details>
+            </div>
+            <button class="btn submit view-btn mt-3">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

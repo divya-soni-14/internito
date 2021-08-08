@@ -24,6 +24,14 @@ def company(request):
         return render(request, 'filter.html',{'companies':NAMES})
 
 def experience(request):
-    responses = Experience.objects.all().order_by('-id')
+    responses = Experience.objects.order_by('company','-id')
     message = 'All Interview Experiences'
     return render(request, 'experience.html',{'responses':responses,'message':message})
+
+
+def write(request):
+    return render(request, 'write.html', {})
+
+
+def about(request):
+    return render(request, 'about.html', {})

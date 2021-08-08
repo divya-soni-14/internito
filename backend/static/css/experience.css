@@ -1,0 +1,56 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #e5e5e5;
+}
+
+.card {
+  background-color: white;
+  border-radius: 30px;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.name {
+  font-weight: 500;
+  margin-bottom: 0px;
+  font-size: 1.2rem;
+}
+
+.company {
+  font-size: 0.8rem;
+  text-transform: lowercase;
+  color: rgb(99, 99, 99);
+}
+
+.company strong {
+  font-weight: 600;
+}
+
+.view-btn {
+  padding: 7px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #76b852;
+  background-color: white;
+  border-radius: 45px;
+  border: 1px solid #76b852;
+}
+
+.view-btn:hover {
+  color: white;
+  border-radius: 45px;
+  border: 1px solid #76b852;
+  background-color: #76b852;
+  outline: none;
+  box-shadow: none;
+}
+
+.view-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
