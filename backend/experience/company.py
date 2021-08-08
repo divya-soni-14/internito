@@ -1,3 +1,14 @@
+BRANCHES = [
+	'CSE', 
+	'ECE', 
+	'EEE', 
+	'MECH', 
+	'CHEM', 
+	'CIVIL', 
+	'MME', 
+	'BIOTECH'
+]
+
 NAMES = [
 	'24*7 INNOVATION LABS',
 	'ABCO',
@@ -33,16 +44,13 @@ NAMES = [
 	'CITICORP',
 	'CITRIX',
 	'CLOUDERA',
-	'CODE BREW',
-	'CODE NATION',
+	'CODEBREW',
 	'CODENATION',
 	'COGNIZANT ',
 	'COUPONDUNIA',
 	'CULTURE EDGE',
 	'CURE FIT',
-	'D-E-SHAW',
 	'DAILYHUNT',
-	'DE SHAW',
 	'DELL',
 	'DELOITTE',
 	'DESHAW',
@@ -190,5 +198,13 @@ NAMES = [
 	'ZOHO',
 	'ZOMATO',
 	'ZOPPER',
-	'ZYCUS'
+	'ZYCUS',
+ 	'CSE', 
+	'ECE', 
+	'EEE', 
+	'MECH', 
+	'CHEM', 
+	'CIVIL', 
+	'MME', 
+	'BIOTECH'
 ]

@@ -40,14 +40,13 @@
 }
 
 .view-btn:hover {
-  color: black;
+  color: black !important;
   border-radius: 45px;
   border: 1px solid #76b852;
   background-color: white;
   outline: none;
   box-shadow: none;
 }
-
 .view-btn:focus {
   outline: none;
   box-shadow: none;
@@ -61,12 +60,9 @@
       <p class="mt-2 lead text-light">
         Get to know students experience of their intern
       </p>
-      <button type="button" 
-        class="
-          btn 
-          view-btn">
+      <a class="btn view-btn" href="{% url 'write'%}">
           Tell Us Yours Now!!
-      </button>
+      </a>
     </div>
   </section>
     

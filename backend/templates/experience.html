@@ -17,12 +17,13 @@
       </p>
     </div>
   </section> -->
-
+  
   <div class="album py-5 bg-lime-invert">
     <div class="container">
       <h1 class="mb-4 justify-content-center">
         <div class="head p-2 justify-content-center">{{message}}</div>
       </h1>
+      <p><a class="badge badge-primary badge-pill p-2" style="float:right;" href="{% url 'company' %}"> Search for Company</a></p>
       {% regroup responses by company as company_lists %}
       {% for company_list in company_lists %}
       <p><strong>{{company_list.grouper}}</strong></p>

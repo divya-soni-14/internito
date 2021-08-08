@@ -57,7 +57,7 @@
           <a class="nav-link" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'company' %}">Companies</a>
+          <a class="nav-link" href="{% url 'company' %}">Search Companies</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'experience' %}">Experiences</a>
@@ -68,6 +68,14 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
+        
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="ml-2 btn btn-outline-danger" href="{% url 'logout' %}"
+            >Log Out</a
+          >
+        </li>
+        {% else %}
         <li class="nav-item">
           <a class="ml-2 btn btn-outline-primary" href="{% url 'login' %}"
             >Log In</a
@@ -76,6 +84,8 @@
         <li class="nav-item">
           <a class="ml-2 btn btn-outline-secondary" href="{% url 'register' %}">Register</a>
         </li>
+        
+        {% endif %}
       </ul>
     </div>
   </nav>
@@ -86,7 +96,7 @@
     <footer>
       <div class="container" style="text-align: center">
         <p>
-          Copyright © 2021 interNito
+          Copyright © 2021 interNito 
         </p>
       </div>
     </footer>

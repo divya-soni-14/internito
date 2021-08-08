@@ -56,9 +56,10 @@
         <!-- Divya -->
         {% endfor %}
       </datalist>
-      <input class="form-control form-control-lg" list="suggestions" id="suggestions" placeholder="Enter a company name"
-        autocomplete="on" required name="company" />
+      <input class="form-control form-control-lg" list="suggestions" id="suggestions" placeholder="Company or Branch or CGPA"
+        autocomplete="on" required name="filter" />
       <!-- <input name="company" autocomplete="on" list="suggestions" required /> -->
+      <small>Enter a company name to filter or Your CGPA to know companies, you are eligible for.</small>
       <input class="btn view-btn" type="submit" value="filter" />
     </div>
   </form>
