@@ -146,6 +146,12 @@
 		document.getElementById('id_username').value = str.split('@')[0];
 	});
 
+	document.getElementById('id_username').addEventListener('keyup', ()=>{
+		var str = email_field.value;
+		document.getElementById('id_username').value = str.split('@')[0];
+		alert("Please Do not edit username! It is auto generated")
+	})
+
 </script>
 
 {% endblock content %}

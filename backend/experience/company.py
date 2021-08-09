@@ -208,3 +208,9 @@ NAMES = [
 	'MME', 
 	'BIOTECH'
 ]
+
+def not_nitw(email):
+    partition = email.split('@')
+    if len(partition) != 2 or partition[1] != 'student.nitw.ac.in':
+        return True
+    return False

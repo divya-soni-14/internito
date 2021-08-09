@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Experience(models.Model):
     name = models.CharField(max_length=80)
     branch = models.CharField(max_length=255,blank=True)

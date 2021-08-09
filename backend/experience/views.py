@@ -1,12 +1,11 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import *
-from .company import NAMES, BRANCHES
+from .company import NAMES, BRANCHES, not_nitw
 from .forms import RegisterForm
 from django.shortcuts import  render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-
 # Create your views here.
 def home(request):
     responses = Experience.objects.all().order_by('-id')[:3]
@@ -15,15 +14,23 @@ def home(request):
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
+        email = request.POST['email']
+        print(email)
+        if not_nitw(email):
+            context = {
+            'alert' : True,
+            'message' : "Please Use NITW MAIL"
+            }
+            # print(form.error_messages)
+            return render(request, 'register.html',context=context)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return render(request, 'filter.html',{})
         else:
-            message =  "Unsuccessful registration. Invalid information."
             context = {
             'alert' : True,
-            'message' : "Form is invalid • Password shouldnt be common • Password Should contain only letters and numbers"
+            'message' : "Form is invalid <br>• Password shouldnt be common <br>• Password Should contain only letters and numbers"
             }
             # print(form.error_messages)
             return render(request, 'register.html',context=context)
@@ -63,6 +70,10 @@ def experience(request):
 # Pending Work
 @login_required()
 def write(request):
+    id = request.user.id
+    print(id)
+    first_name = request.user
+    print(first_name)
     if request.method == 'POST':
         lop = request.POST.getlist('branches')
         return render(request, 'write.html', {})

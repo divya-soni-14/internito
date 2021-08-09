@@ -37,7 +37,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <a
     style="color: #76b852"
-      class="logoAnchor navbar-brand"
+      class="logoAnchor navbar-brand" href="{% url 'home' %}"
       ><strong>inter<big>N</big>ito</strong></a>
     
     <button
@@ -53,9 +53,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'home' %}">Home</a>
+          <a class="nav-link"
+            >Hello <strong>{{request.user}}!</strong></a>
         </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'company' %}">Search Companies</a>
         </li>
