@@ -95,7 +95,7 @@
 
 <div class="card mt-5" style="max-width: 35rem; margin: 20px auto;">
 	<div class="card-body justify-content-center">
-		<h2 class="card-title text-center mb-4 mt-2">Create Your Account! - {{ form.non_field_errors }}</h2>
+		<h2 class="card-title text-center mb-4 mt-2">Create Your Account!</h2>
 		<form action="" method="POST">
 			{% csrf_token %}
 			<div class="form-group">
@@ -133,11 +133,16 @@
 </div>
 
 
+
+	
+	
+		
 	
 <script>
 	
 	{% if alert %}
-		alert('{{message}}');
+		var message = "{% for field in form %}{% if field.errors %}	{% for error in field.errors %}{{error}}\n{% endfor %}{% endif %}{% endfor %}".trim()
+		alert(message);
 	{% endif %}
 
 	var email_field = document.getElementById('id_email');

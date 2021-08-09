@@ -18,6 +18,7 @@ def register(request):
         print(email)
         if not_nitw(email):
             context = {
+            'form':form,
             'alert' : True,
             'message' : "Please Use NITW MAIL"
             }
@@ -29,6 +30,7 @@ def register(request):
             return render(request, 'filter.html',{})
         else:
             context = {
+            'form' : form,
             'alert' : True,
             'message' : "Form is invalid <br>• Password shouldnt be common <br>• Password Should contain only letters and numbers"
             }
