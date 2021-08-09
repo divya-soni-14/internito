@@ -94,7 +94,7 @@
 
 <div class="card mt-5" style="max-width: 35rem; margin: 20px auto;">
 	<div class="card-body justify-content-center">
-		{{error}}
+		{{message}}
 		<h2 class="card-title text-center mb-4 mt-2">Login to Your Account</h2>
 		<form action="{% url 'login' %}" method="POST">
 			{% csrf_token %}

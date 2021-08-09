@@ -2,6 +2,10 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import *
 from .company import NAMES, BRANCHES
+from .forms import RegisterForm
+from django.shortcuts import  render, redirect
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -9,7 +13,28 @@ def home(request):
     return render(request, 'home.html',{'responses':responses})
 
 def register(request):
-    return render(request, 'register.html',{})
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return render(request, 'filter.html',{})
+        else:
+            message =  "Unsuccessful registration. Invalid information."
+            context = {
+            'alert' : True,
+            'message' : "Form is invalid • Password shouldnt be common • Password Should contain only letters and numbers"
+            }
+            # print(form.error_messages)
+            return render(request, 'register.html',context=context)
+    elif request.method == "GET":
+        message = "Good Morning"
+        form = RegisterForm()
+        context = {
+        'form' : form,
+        'message' : message
+        }
+        return render(request, 'register.html',context=context)
 
 def company(request):
     if request.method == 'POST':
@@ -35,11 +60,11 @@ def experience(request):
     message = 'All Interview Experiences'
     return render(request, 'experience.html',{'responses':responses,'message':message})
 
-
+# Pending Work
+@login_required()
 def write(request):
     if request.method == 'POST':
         lop = request.POST.getlist('branches')
-        print(lop)
         return render(request, 'write.html', {})
     return render(request, 'write.html', {})
 

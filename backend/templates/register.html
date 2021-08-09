@@ -5,6 +5,7 @@
 <!-- <link rel="stylesheet" href="{% static 'css/register.css' %}"> -->
 
 <script type="application/x-javascript">
+	
   addEventListener("load", function() { 
     setTimeout(hideURLbar, 0); 
   }, false); 
@@ -94,21 +95,26 @@
 
 <div class="card mt-5" style="max-width: 35rem; margin: 20px auto;">
 	<div class="card-body justify-content-center">
-		<h2 class="card-title text-center mb-4 mt-2">Create Your Account!</h2>
-		<form action="">
+		<h2 class="card-title text-center mb-4 mt-2">Create Your Account! - {{ form.non_field_errors }}</h2>
+		<form action="" method="POST">
+			{% csrf_token %}
 			<div class="form-group">
-				<label for="username">First Name</label>
-				<input type="text username" type="text" name="first_name" placeholder="First Name" required=""
+				<label for="first_name">First Name</label>
+				<input type="text first_name" type="text" name="first_name" placeholder="First Name" required=""
 					class="form-control">
 			</div>
 			<div class="form-group">
-				<label for="username">Last Name</label>
-				<input type="text username" type="text" name="last_name" placeholder="Last Name" required=""
+				<label for="last_name">Last Name</label>
+				<input type="text last_name" type="text" name="last_name" placeholder="Last Name" required=""
 					class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="email">Email Address</label>
-				<input type="text email" type="email" name="email" placeholder="Email Address" required="" class="form-control">
+				<input type="email" name="email" placeholder="Email Address" required="" class="form-control" id="id_email">
+			</div>
+			<div class="form-group">
+				<label for="username">Username</label>
+				<input type="text username" name="username" required="" class="form-control" id="id_username">
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
@@ -118,11 +124,28 @@
 				<label for="password">Confirm Password</label>
 				<input type="password" name="password2" placeholder="Re-enter Password" required="" class="form-control">
 			</div>
-			<button class="btn submit view-btn mt-3" type="Submit">Sign Up</button>
+			<input class="btn submit view-btn mt-3" type="Submit" value="SignUp">
 			<p class="card-text register-text mb-2">Already have an account? <a href="{% url 'login' %}"> Login Now!</a>
 			</p>
+			
 		</form>
 	</div>
 </div>
+
+
+	
+<script>
+	
+	{% if alert %}
+		alert('{{message}}');
+	{% endif %}
+
+	var email_field = document.getElementById('id_email');
+	email_field.addEventListener("keyup", ()=>{
+		var str = email_field.value;
+		document.getElementById('id_username').value = str.split('@')[0];
+	});
+
+</script>
 
 {% endblock content %}
