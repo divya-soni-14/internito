@@ -1,14 +1,215 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- <link rel="stylesheet" href="{% static 'css/experience.css' %}" /> -->
 
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/experience.css' %}" />
+<style>
+    body{
+        font-family: 'Open Sans', sans-serif;
+    }
+    *:hover{
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+    section{
+        float:left;
+        width:100%;
+        background: #fff;  /* fallback for old browsers */
+        padding:30px 0;
+    }
+    h1{float:left; width:100%; color:#232323; margin-bottom:30px; font-size: 14px;}
+    h1 span{font-family: 'Libre Baskerville', serif; display:block; font-size:45px; text-transform:none; margin-bottom:20px; margin-top:30px; font-weight:700}
+    h1 a{color:#131313; font-weight:bold;}
+    
+    /*Profile Card 3*/
+    .profile-card-3 {
+      font-family: 'Poppins' sans-serif;
+      position: relative;
+      float: left;
+      overflow: hidden; 
+      width: 100%;
+      text-align: center;
+      height:368px;
+      border:none;
+      margin-top: 20px;
+    }
+    .profile-card-3 .background-block {
+        float: left;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .profile-card-3 .background-block .background {
+      width:100%;
+      vertical-align: top;
+      opacity: 0.9;
+      -webkit-filter: blur(0.5px);
+      filter: blur(0.5px);
+       -webkit-transform: scale(1.8);
+      transform: scale(2.8);
+    }
+    .profile-card-3 .card-content {
+      width: 100%;
+      padding: 15px 25px;
+      color:#232323;
+      float:left;
+      background:#efefef;
+      height:50%;
+      border-radius:0 0 5px 5px;
+      position: relative;
+      z-index: 9999;
+    }
+    .profile-card-3 .card-content::before {
+        content: '';
+        background: #efefef;
+        width: 120%;
+        height: 100%;
+        left: 11px;
+        bottom: 51px;
+        position: absolute;
+        z-index: -1;
+        transform: rotate(-13deg);
+    }
+    .profile-card-3 .profile {
+      border-radius: 50%;
+      height: 100px;
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      width: 100px;
+      object-fit:cover;
+      opacity: 1;
+      box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 255, 255, 1);
+      -webkit-transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
+      z-index:99999;
+    }
+    .profile-card-3 h2 {
+      margin: 0 0 5px;
+      font-weight: 600;
+      font-size:22px;
+    }
+    .profile-card-3 h2 small {
+      display: block;
+      font-size: 15px;
+      margin-top:10px;
+    }
 
-<main role="main">
-    <section class="jumbotron text-center bg-lime">
-        <div class="container text-light">
-            <h1>About Page</h1>
-        </div>
-    </section>
+    .btn-outline-primary-temp {
+        margin-top: 20px;
+    }
+    body,.main-body{
+        background-color:#e5e5e5;
+    }
+    
+</style>
 
-{% endblock content %}
+<div class="container" style="font-family: 'Poppins', sans-serif">
+  <div class="row">
+    <div class="post-card mt-4">
+      <div class="card-body">
+        <h2 class="card-title">Why interNito?</h2>
+
+        <p class="card-text blog-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+          error nisi at quibusdam dolores recusandae consectetur, voluptates sit
+          labore, vitae laudantium inventore exercitationem a pariatur sunt,
+          architecto blanditiis esse quae. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Repellat error nisi at quibusdam dolores
+          recusandae consectetur, voluptates sit labore, vitae laudantium
+          inventore exercitationem a pariatur sunt, architecto blanditiis esse
+          quae.
+        </p>
+        <hr />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+ 
+      <div class="card-body">
+        <h2 class="card-title">Developers</h2>
+        <section class="main-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card profile-card-3">
+                            <div class="background-block">
+                                <img src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="profile-sample1" class="background"/>
+                            </div>
+                            <div class="profile-thumb-block">
+                                <img src="{%static 'images/sufiyan.jpeg'%}" alt="profile-image" class="profile"/>
+                            </div>
+                            <div class="card-content">
+                            <h2>Sufiyan Ansari<small>Backend Developer</small></h2>
+                            <div class="icon-block">
+                                <a class="btn btn-outline-primary-temp btn-outline-primary" target="_blank"
+                                href="https://www.linkedin.com/in/sufiyan-ansari-nitw/">LinkedIn Profile</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card profile-card-3">
+                            <div class="background-block">
+                                <img src="https://images.unsplash.com/photo-1628254747021-59531f59504b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" alt="profile-sample1" class="background"/>
+                            </div>
+                            <div class="profile-thumb-block">
+                                <img src="https://media-exp1.licdn.com/dms/image/C4D03AQGVEtaZym7NRw/profile-displayphoto-shrink_100_100/0/1618474204172?e=1634169600&v=beta&t=1LpgSvlGz_nqwkLj9x7aeEJAtjsWlHlVW5bTEzN9krc" alt="profile-image" class="profile"/>
+                            </div>
+                            <div class="card-content">
+                            <h2 >Chaitanya Hardikar<small> Backend Developer</small></h2>
+                            <div class="icon-block">
+                                <a class="btn btn-outline-primary-temp btn-outline-primary" target="_blank"
+                                href="https://www.linkedin.com/in/chaitanya-hardikar-0ab4821a7/">LinkedIn Profile</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card profile-card-3">
+                            <div class="background-block">
+                                <img src="https://images.unsplash.com/photo-1628062411051-f1be1f511c7b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80" alt="profile-sample1" class="background"/>
+                            </div>
+                            <div class="profile-thumb-block">
+                                <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFR1IUkBWEJWg/profile-displayphoto-shrink_100_100/0/1604626128993?e=1634169600&v=beta&t=LXfjuXiqV4ARO5uowjOYJmUAisTLJ53IlyoN1b_nPxY" alt="profile-image" class="profile"/>
+                            </div>
+                            <div class="card-content">
+                            <h2>Divya Soni<small>Frontend Developer</small></h3>
+                            <div class="icon-block">
+                                <a class="btn btn-outline-primary-temp btn-outline-primary" target="_blank" href="https://www.linkedin.com/in/divya-soni14/">LinkedIn Profile</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="card profile-card-3">
+                            <div class="background-block">
+                                <img src="https://images.unsplash.com/photo-1626338355308-124d9c727cfb?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI1fDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="profile-sample1" class="background"/>
+                            </div>
+                            <div class="profile-thumb-block">
+                                <img src="{%static 'images/Abhishek.jpeg'%}" alt="profile-image" class="profile abhishek-img"/>
+                            </div>
+                            <div class="card-content">
+                            <h2>Abhishek Upadhayayula<small>Frontend Developer</small></h3>
+                            <div class="icon-block">
+                                <a class="btn btn-outline-primary-temp btn-outline-primary" target="_blank"
+                                href="https://www.linkedin.com/in/abhishek-upadhayayula-a541ba1b8/">LinkedIn Profile</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </section>
+      </div>
+
+      </div>
+    </div>
+
+    {% endblock content %}
+  </div>
+</div>

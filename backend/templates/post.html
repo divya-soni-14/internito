@@ -1,0 +1,79 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post.css' %}" />
+
+<style>
+  strong {
+    font-weight: 500;
+  }
+
+  .card-title {
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin: 10px auto 20px auto;
+  }
+
+  .title {
+    font-weight: 600;
+    margin: 0.3rem 0 1.3rem 0.45rem;
+  }
+  .abt-info-title {
+    margin: 10px;
+    padding: 0;
+  }
+
+  .blog-text {
+    margin-bottom: 20px;
+  }
+</style>
+
+<div class="container-fluid" style="font-family: 'Poppins', sans-serif">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="post-card mt-4">
+        <div class="card-body">
+          <h3 class="card-title">Heading 1</h3>
+
+          <p class="card-text blog-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            error nisi at quibusdam dolores recusandae consectetur, voluptates
+            sit labore, vitae laudantium inventore exercitationem a pariatur
+            sunt, architecto blanditiis esse quae.
+          </p>
+          <hr />
+          <h3 class="card-title">Heading 1</h3>
+
+          <p class="card-text blog-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            error nisi at quibusdam dolores recusandae consectetur, voluptates
+            sit labore, vitae laudantium inventore exercitationem a pariatur
+            sunt, architecto blanditiis esse quae.
+          </p>
+          <hr />
+          <h3 class="card-title">Heading 1</h3>
+
+          <p class="card-text blog-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            error nisi at quibusdam dolores recusandae consectetur, voluptates
+            sit labore, vitae laudantium inventore exercitationem a pariatur
+            sunt, architecto blanditiis esse quae.
+          </p>
+          <hr />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card info-card mt-4">
+        <div class="card-body">
+          <h4 class="title">About the Intern</h4>
+          <p class="abt-info-title"><strong> Name: </strong> Divya Soni</p>
+          <p class="abt-info-title"><strong>Company:</strong> Google</p>
+          <p class="abt-info-title"><strong>Branch:</strong> CSE</p>
+          <p class="abt-info-title"><strong>CGPA Cut Off:</strong> 9.5</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

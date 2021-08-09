@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/experience.css' %}" />
+
+<style>
+    strong {
+        font-weight: 500;
+    }
+
+    .info-card {
+        background-color: white;
+    }
+
+    .title,
+    .card-title {
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin: 10px auto 20px auto;
+    }
+
+    .abt-info-title {
+        margin: 10px;
+        padding: 0;
+    }
+
+    .blog-text {
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container-fluid" style="font-family: 'Poppins', sans-serif">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card post-card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">User Profile</h5>
+                    <p class="abt-info-title"><strong>Name: </strong>John Doe</p>
+                    <p class="abt-info-title"><strong>Email: </strong>sample@email.com</p>
+                    <p class="abt-info-title"><strong>Username: </strong>user1234</p>
+                    <p class="abt-info-title"><strong>Posts: </strong>2</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+        <div class="row">
+            <div class="col">
+                <div class="card post-card mt-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Post 1</h4>
+                        <p class="card-text blog-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+                            error nisi at quibusdam dolores recusandae consectetur, voluptates
+                            sit labore, vitae laudantium inventore exercitationem a pariatur
+                            sunt, architecto blanditiis esse quae.
+                        </p>
+                        <button type="button" class="btn btn-outline-primary">View</button>
+                        <button type="button" class="btn btn-outline-success">Edit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card post-card mt-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Post 2</h4>
+                        <p class="card-text blog-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+                            error nisi at quibusdam dolores recusandae consectetur, voluptates
+                            sit labore, vitae laudantium inventore exercitationem a pariatur
+                            sunt, architecto blanditiis esse quae.
+                        </p>
+                        <button type="button" class="btn btn-outline-primary">View</button>
+                        <button type="button" class="btn btn-outline-success">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}

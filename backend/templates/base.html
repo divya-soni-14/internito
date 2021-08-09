@@ -9,7 +9,11 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="icon" href="../../../../favicon.ico" />
+    <link rel="icon" href="{%static 'images/favicon.ico' %}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{%static 'images/apple-touch-icon.png' %}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{%static 'images/favicon-32x32.png' %}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{%static 'images/favicon-16x16.png' %}" />
+  <link rel="manifest" href="{% static 'images/site.webmanifest' %}" />
 
     <title>interNito</title>
 
@@ -55,7 +59,7 @@
       <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link"
+          <a class="nav-link" href="{% url 'profile' %}"
             >Hello <strong>{{request.user}}!</strong></a>
         </li>
         {% endif %}
@@ -97,10 +101,31 @@
 
 
     <footer>
+      <style>
+        a,
+        a:focus {
+          text-decoration: none;
+          color: black;
+        }
+  
+        a:hover {
+          color: black;
+        }
+      </style>
       <div class="container" style="text-align: center">
         <p>
           Copyright © 2021 interNito 
         </p>
+        <small style="font-weight: 550">Made with &#x2764; by
+          <a target="_blank" href="https://www.linkedin.com/in/sufiyan-ansari-nitw/">
+            Sufiyan</a>,
+          <a target="_blank" href="https://www.linkedin.com/in/chaitanya-hardikar-0ab4821a7/">
+            Chaitanya</a>,
+          <a target="_blank" href="https://www.linkedin.com/in/divya-soni14/">
+            Divya</a>
+          &
+          <a target="_blank" href="https://www.linkedin.com/in/abhishek-upadhayayula-a541ba1b8/">
+            Abhishek</a></small>
       </div>
     </footer>
 

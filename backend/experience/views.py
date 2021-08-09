@@ -84,3 +84,10 @@ def write(request):
 
 def about(request):
     return render(request, 'about.html', {})
+
+
+def post(request):
+    return render(request, 'post.html', {})
+
+def profile(request):
+    return render(request, 'profile.html', {})
