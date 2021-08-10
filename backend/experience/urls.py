@@ -11,6 +11,8 @@ urlpatterns = [
     path('experience/',views.experience,name='experience'),
     path('write/', views.write, name='write'),
     path('about/', views.about, name='about'),
-    path('post/', views.post, name='post'),
+    path('post/<int:id>', views.post, name='post'),
     path('profile/<username>', views.profile, name='profile'),
+    path('delete/<int:id>', views.delete, name='delete'),
+    path('edit/<int:id>', views.edit, name='edit'),
 ]

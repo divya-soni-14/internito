@@ -32,32 +32,88 @@
     <div class="col-lg-9">
       <div class="post-card mt-4">
         <div class="card-body">
-          <h3 class="card-title">Heading 1</h3>
+          
 
-          <p class="card-text blog-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            error nisi at quibusdam dolores recusandae consectetur, voluptates
-            sit labore, vitae laudantium inventore exercitationem a pariatur
-            sunt, architecto blanditiis esse quae.
-          </p>
-          <hr />
-          <h3 class="card-title">Heading 1</h3>
+          <!-- ONLINE TEST -->
+          {% if response.ot_summary %}
+            <details>
+              <summary class="card-title">ONLINE TEST</summary>
+              <h5 class="card-text">About Online Test</h3>
+              <p class="card-text blog-text">
+                {{ response.ot_summary }}
+              </p>
+            <hr />
 
-          <p class="card-text blog-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            error nisi at quibusdam dolores recusandae consectetur, voluptates
-            sit labore, vitae laudantium inventore exercitationem a pariatur
-            sunt, architecto blanditiis esse quae.
-          </p>
-          <hr />
-          <h3 class="card-title">Heading 1</h3>
 
-          <p class="card-text blog-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            error nisi at quibusdam dolores recusandae consectetur, voluptates
-            sit labore, vitae laudantium inventore exercitationem a pariatur
-            sunt, architecto blanditiis esse quae.
-          </p>
+            
+            {% if response.ot_question1 %}
+              <h5 class="card-text">Online Test Question - 1</h3>
+              <p class="card-text blog-text">
+                {{ response.ot_question1 }}
+              </p>
+            <hr />
+            {% endif %}
+              
+            {% if response.ot_question2 %}
+              <h5 class="card-text">Online Test Question - 2</h3>
+              <p class="card-text blog-text">
+                {{ response.ot_question2 }}
+              </p>
+            <hr />
+            {% endif %}
+            {% if response.ot_question3 %}
+              <h5 class="card-text">Online Test Question - 3</h3>
+              <p class="card-text blog-text">
+                {{ response.ot_question3 }}
+              </p>
+            <hr />
+            {% endif %}
+            {% if response.ot_question4 %}
+              <h5 class="card-text">Online Test Question - 4</h3>
+              <p class="card-text blog-text">
+                {{ response.ot_question4 }}
+              </p>
+            <hr />
+            {% endif %}
+            </details>  
+
+          {% endif %}
+            
+
+          <!-- ROUND 1 Interview -->
+          {% if response.round1_details %}
+            <details>
+              <summary class="card-title">Round 1 Interview</summary>
+              <p class="card-text blog-text">
+                {{ response.round1_details }}
+              </p>
+            <hr />
+            </details>
+          {% endif %}
+
+        
+          <!-- ROUND 2 Interview -->
+          {% if response.round2_details %}
+            <details>
+              <summary class="card-title">Round 2 Interview</summary>
+              <p class="card-text blog-text">
+                {{ response.round2_details }}
+              </p>
+            <hr />
+              </details>
+          {% endif %}
+
+          <!-- ROUND 3 Interview -->
+          {% if response.round3_details %}
+            <details>
+              <summary class="card-title">Round 3 Interview</summary>
+              <p class="card-text blog-text">
+                {{ response.round3_details }}
+              </p>
+            <hr />
+            </details>
+          {% endif %}
+
           <hr />
         </div>
       </div>
@@ -65,11 +121,11 @@
     <div class="col-lg-3">
       <div class="card info-card mt-4">
         <div class="card-body">
-          <h4 class="title">About the Intern</h4>
-          <p class="abt-info-title"><strong> Name: </strong> Divya Soni</p>
-          <p class="abt-info-title"><strong>Company:</strong> Google</p>
-          <p class="abt-info-title"><strong>Branch:</strong> CSE</p>
-          <p class="abt-info-title"><strong>CGPA Cut Off:</strong> 9.5</p>
+          <h4 class="title">About the Author</h4>
+          <p class="abt-info-title"><strong> Name: </strong> {{ response.name }}</p>
+          <p class="abt-info-title"><strong>Company:</strong> {{ response.company }}</p>
+          <p class="abt-info-title"><strong>Eligible Branches:</strong>{{ response.branch }}</p>
+          <p class="abt-info-title"><strong>CGPA Cut Off:</strong> {{ response.cgpa_cutoff }}</p>
         </div>
       </div>
     </div>

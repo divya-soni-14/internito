@@ -75,80 +75,139 @@
 
 <div class="card mt-5" style="max-width: 80%; margin: 20px auto;">
     <div class="card-body justify-content-center main-body">
-        <h2 class="card-title text-center mb-4 mt-2">Fill the Form Below</h2>
+        <h2 class="card-title text-center mb-4 mt-2">Fill the Form Below to
+            
+            {% if message %}
+            {{message}}
+                {% else %}
+                
+                add new experience
+            {% endif %}</h2>
         <form action="" method="POST">
             {% csrf_token %}
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="{{request.user}}" disabled>
+                  <input type="text" class="form-control" id="name" name="name" value="{{ request.user.first_name}} {{request.user.last_name}}" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" name="email" placeholder="{{request.user.email}}" disabled>
+                  <input type="email" class="form-control" id="email" name="email" value="{{request.user.email}}" required> 
                 </div>
             </div>
             <div class="form-group row">
                 <label for="batch" class="col-sm-2 col-form-label">Batch</label>
                 <div class="col-sm-10">
-                    <select type="select" name="batch" placeholder="Batch"  class="form-control">
-                        <option value="2017-2021">2018-2022</option>
-                        <option value="2018-2022">2018-2022</option>
-                        <option value="2019-2023">2019-2023</option>
-                        <option value="2020-2024">2020-2024</option>
+                    <select type="select" name="batch" placeholder="Batch"  class="form-control" required>
+                        <option value="2017-2021" 
+                        {% if post.batch == '2017-2021' %} selected
+                            
+                        {% endif %}
+                            >2017-2021</option>
+                        <option value="2018-2022" {% if post.batch == '2018-2022' %} selected
+                            
+                        {% endif %}
+                        >2018-2022</option>
+                        <option value="2019-2023" {% if post.batch == '2019-2023' %} selected
+                            
+                        {% endif %}>2019-2023</option>
+                        <option value="2020-2024" {% if post.batch == '2020-2024' %} selected
+                            
+                        {% endif %}>2020-2024</option>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="company" class="col-sm-2 col-form-label">Company Name</label>
                 <div class="col-sm-10">
-                    <input type="company" name="company" placeholder="Company Name"  class="form-control">
+                    <input type="company" name="company" placeholder="Company Name"  class="form-control" value="{{post.company}}" required>
                 </div>
             </div>
 
             <div class="form-group row">
                     <label for="cgpa" class="col-sm-2 col-form-label">CGPA Cutoff</label>
                     <div class="col-sm-10">
-                        <input type="text cgpa" type="cgpa" name="cgpa" placeholder="CGPA"  class="form-control">
+                        <input type="text cgpa" value="{{post.cgpa_cutoff}}" type="cgpa" name="cgpa" placeholder="CGPA"  class="form-control" required>
                     </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="date" class="col-sm-2 col-form-label">Rough Date</label>
+                <div class="col-sm-10">
+                    <input type="text date" type="date" name="period" value="{{post.period}}" placeholder=""  class="form-control" required>
+                    <small>You can give exact date like dd/mm/yyyy or if not sure, feel free to write in general for example August 2021 1st Week</small>
+                </div>
+                
             </div>
 
             <div class="form-group row">
                 <label for="branches" class="col-sm-2 col-form-label">Eligible Branches</label>
                 <div class="col-sm-10">
-                    <input type="checkbox" name="branches" value="CSE" class="form-group"> <label for="CSE">CSE | </label>
-                    <input type="checkbox" name="branches" value="ECE" class="form-group"> <label for="ECE">ECE | </label>
-                    <input type="checkbox" name="branches" value="EEE" class="form-group"> <label for="EEE">EEE | </label>
-                    <input type="checkbox" name="branches" value="MECH" class="form-group"> <label for="mech">MECH | </label>
-                    <input type="checkbox" name="branches" value="CHEM" class="form-group"> <label for="chem">CHEM | </label>
-                    <input type="checkbox" name="branches" value="CIVIL" class="form-group"> <label for="civil">CIVIL | </label>
-                    <input type="checkbox" name="branches" value="MME" class="form-group"> <label for="civil">MME | </label>
-                    <input type="checkbox" name="branches" value="BIOTECH" class="form-group"> <label for="Biotech">BIOTECH </label>
+                    <input type="checkbox" name="branches" value="CSE" class="form-group" 
+                    {% if 'CSE' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="CSE">CSE | </label>
+                    <input type="checkbox" name="branches" value="ECE" class="form-group"
+                    {% if 'ECE' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="ECE">ECE | </label>
+                    <input type="checkbox" name="branches" value="EEE" class="form-group"
+                    {% if 'EEE' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="EEE">EEE | </label>
+                    <input type="checkbox" name="branches" value="MECH" class="form-group"
+                    {% if 'MECH' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="mech">MECH | </label>
+                    <input type="checkbox" name="branches" value="CHEM" class="form-group"
+                    {% if 'CHEM' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="chem">CHEM | </label>
+                    <input type="checkbox" name="branches" value="CIVIL" class="form-group"
+                    {% if 'CIVIL' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="civil">CIVIL | </label>
+                    <input type="checkbox" name="branches" value="MME" class="form-group"
+                    {% if 'MME' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="civil">MME | </label>
+                    <input type="checkbox" name="branches" value="BIOTECH" class="form-group"
+                    {% if 'BIOTECH' in post.branch %}
+                        checked
+                    {% endif %}
+                         > <label for="Biotech">BIOTECH </label>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="resume" class="col-sm-2 col-form-label">Resume Link</label>
                 <div class="col-sm-10">
-                    <input type="url" name="resume" placeholder="Upload link to your resume" class="form-control">
+                    <input type="url" value="{{post.resume}}" name="resume" placeholder="Upload link to your resume" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Please tell about OT</summary>
-                    <textarea type="textarea" name="aboutOT" placeholder="Please tell us about OT" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_summary}}" name="aboutOT" placeholder="Please tell us about OT, Include your suggestions and tips here too." class="form-control"></textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Question 1 of OT</summary>
-                    <textarea type="textarea" name="aboutOT1" placeholder="Question 1 of OT" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_question1}}" name="aboutOT1" placeholder="Question 1 of OT" class="form-control"></textarea>
                     <div class="ml-2">
                         <details class="ml-2">
                             <summary>Any Link, related to Question 1 of OT</summary>
-                            <input type="url" name="linkOT1" placeholder="Link for Question 1 of OT" class="form-control">
+                            <input type="url" value="{{post.ot_question1_link}}" name="linkOT1" placeholder="Link for Question 1 of OT" class="form-control">
                         </details>
                     </div>
                 </details>
@@ -156,11 +215,11 @@
             <div class="form-group">
                 <details>
                     <summary>Question 2 of OT</summary>
-                    <textarea type="textarea" name="aboutOT2" placeholder="Question 2 of OT" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_question2}}" name="aboutOT2" placeholder="Question 2 of OT" class="form-control"></textarea>
                     <div class="ml-2">
                         <details class="ml-2">
                             <summary>Any Link, related to Question 2 of OT</summary>
-                            <input type="url" name="linkOT2" placeholder="Link for Question 2 of OT" class="form-control">
+                            <input type="url" value="{{post.ot_question2_link}}" name="linkOT2" placeholder="Link for Question 2 of OT" class="form-control">
                         </details>
                     </div>
                 </details>
@@ -168,47 +227,67 @@
             <div class="form-group">
                 <details>
                     <summary>Question 3 of OT</summary>
-                    <textarea type="textarea" name="aboutOT3" placeholder="Question 3 of OT" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_question3}}" name="aboutOT3" placeholder="Question 3 of OT" class="form-control"></textarea>
                     <div class="ml-2">
                         <details class="ml-2">
                             <summary>Any Link, related to Question 3 of OT</summary>
-                            <input type="url" name="linkOT3" placeholder="Link for Question 3 of OT" class="form-control">
+                            <input type="url" value="{{post.ot_question3_link}}" name="linkOT3" placeholder="Link for Question 3 of OT" class="form-control">
                         </details>
                     </div>
                 </details>
             </div>
             <div class="form-group">
                 <details>
-                    <summary>Comments/Suggestions for OT</summary>
-                    <textarea type="textarea" name="OTSummary" placeholder="Comments/Suggestions for OT" class="form-control"></textarea>
+                    <summary>Question 4 / MCQ Lists (if any) of OT</summary>
+                    <textarea type="textarea" value="{{post.ot_question4}}" name="aboutOT4" placeholder="Question 4 of OT/ If MCQs there please fill it here" class="form-control"></textarea>
+                    <div class="ml-2">
+                        <details class="ml-2">
+                            <summary>Any Link, related to Question 4 of OT</summary>
+                            <input type="url" value="{{post.ot_question4_link}}" name="linkOT4" placeholder="Link for Question 4 of OT" class="form-control">
+                        </details>
+                    </div>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Round 1 of Interview</summary>
-                    <textarea type="textarea" name="interviewR1" placeholder="Round 1 of Interview" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.round1_details}}" name="interviewR1" placeholder="Round 1 of Interview" class="form-control"></textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Round 2 of Interview</summary>
-                    <textarea type="textarea" name="interviewR2" placeholder="Round 2 of Interview" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.round2_details}}" name="interviewR2" placeholder="Round 2 of Interview" class="form-control"></textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Round 3 of Interview</summary>
-                    <textarea type="textarea" name="interviewR3" placeholder="Round 3 of Interview" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.round3_details}}" name="interviewR3" placeholder="Round 3 of Interview" class="form-control"></textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Final Comments</summary>
-                    <textarea type="textarea" name="suggestions" placeholder="Final Comments" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.final_summary}}" name="suggestions" placeholder="Final Comments" class="form-control"></textarea>
                 </details>
             </div>
             <button class="btn submit view-btn mt-3">Submit</button>
         </form>
     </div>
 </div>
+
+<script>
+    var nameBlock = document.getElementById('name')
+    nameBlock.addEventListener('keyup',()=>{
+        alert("Please Don\'t Change the name, it is already constant for you. Thank You");
+        nameBlock.value = "{{ request.user.first_name}} {{request.user.last_name}}"
+    })
+
+    var emailBlock = document.getElementById('email')
+    emailBlock.addEventListener('keyup',()=>{
+        alert("Please Don\'t Change the email, it is already constant for you. Thank You");
+        emailBlock.value = "{{ request.user.email }}"
+    })
+</script>
 {% endblock content %}
