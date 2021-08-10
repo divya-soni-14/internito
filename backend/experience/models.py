@@ -7,6 +7,7 @@ class Experience(models.Model):
     branch = models.CharField(max_length=255,blank=True)
     cgpa_cutoff = models.FloatField(blank=True)
     resume = models.TextField(blank=True)
+    batch = models.CharField(max_length=255, blank=True)
     company = models.CharField(max_length=255,blank=False)
     summary = models.TextField(blank=False)
     period = models.CharField(max_length=255,blank=False)

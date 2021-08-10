@@ -102,20 +102,20 @@
                 <div class="col-sm-10">
                     <select type="select" name="batch" placeholder="Batch"  class="form-control" required>
                         <option value="2017-2021" 
-                        {% if post.batch == '2017-2021' %} selected
+                        {% ifequal '2017-2021' post.batch %} selected
                             
-                        {% endif %}
+                        {% endifequal %}
                             >2017-2021</option>
-                        <option value="2018-2022" {% if post.batch == '2018-2022' %} selected
+                        <option value="2018-2022" {% ifequal '2018-2022' post.batch %} selected
                             
-                        {% endif %}
+                        {% endifequal %}
                         >2018-2022</option>
-                        <option value="2019-2023" {% if post.batch == '2019-2023' %} selected
+                        <option value="2019-2023" {% ifequal '2019-2023' post.batch %} selected
                             
-                        {% endif %}>2019-2023</option>
-                        <option value="2020-2024" {% if post.batch == '2020-2024' %} selected
+                        {% endifequal %}>2019-2023</option>
+                        <option value="2020-2024" {% ifequal '2020-2024' post.batch %} selected
                             
-                        {% endif %}>2020-2024</option>
+                        {% endifequal %}>2020-2024</option>
                     </select>
                 </div>
             </div>
@@ -197,13 +197,13 @@
             <div class="form-group">
                 <details>
                     <summary>Please tell about OT</summary>
-                    <textarea type="textarea" value="{{post.ot_summary}}" name="aboutOT" placeholder="Please tell us about OT, Include your suggestions and tips here too." class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_summary}}" name="aboutOT" placeholder="Please tell us about OT, Include your suggestions and tips here too." class="form-control">{{post.ot_summary}}</textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Question 1 of OT</summary>
-                    <textarea type="textarea" value="{{post.ot_question1}}" name="aboutOT1" placeholder="Question 1 of OT" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_question1}}" name="aboutOT1" placeholder="Question 1 of OT" class="form-control">{{post.ot_question1}}</textarea>
                     <div class="ml-2">
                         <details class="ml-2">
                             <summary>Any Link, related to Question 1 of OT</summary>
@@ -215,7 +215,7 @@
             <div class="form-group">
                 <details>
                     <summary>Question 2 of OT</summary>
-                    <textarea type="textarea" value="{{post.ot_question2}}" name="aboutOT2" placeholder="Question 2 of OT" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_question2}}" name="aboutOT2" placeholder="Question 2 of OT" class="form-control">{{post.ot_question2}}</textarea>
                     <div class="ml-2">
                         <details class="ml-2">
                             <summary>Any Link, related to Question 2 of OT</summary>
@@ -227,7 +227,7 @@
             <div class="form-group">
                 <details>
                     <summary>Question 3 of OT</summary>
-                    <textarea type="textarea" value="{{post.ot_question3}}" name="aboutOT3" placeholder="Question 3 of OT" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_question3}}" name="aboutOT3" placeholder="Question 3 of OT" class="form-control">{{post.ot_question3}}</textarea>
                     <div class="ml-2">
                         <details class="ml-2">
                             <summary>Any Link, related to Question 3 of OT</summary>
@@ -239,7 +239,7 @@
             <div class="form-group">
                 <details>
                     <summary>Question 4 / MCQ Lists (if any) of OT</summary>
-                    <textarea type="textarea" value="{{post.ot_question4}}" name="aboutOT4" placeholder="Question 4 of OT/ If MCQs there please fill it here" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.ot_question4}}" name="aboutOT4" placeholder="Question 4 of OT/ If MCQs there please fill it here" class="form-control">{{post.ot_question4}}</textarea>
                     <div class="ml-2">
                         <details class="ml-2">
                             <summary>Any Link, related to Question 4 of OT</summary>
@@ -251,25 +251,25 @@
             <div class="form-group">
                 <details>
                     <summary>Round 1 of Interview</summary>
-                    <textarea type="textarea" value="{{post.round1_details}}" name="interviewR1" placeholder="Round 1 of Interview" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.round1_details}}" name="interviewR1" placeholder="Round 1 of Interview" class="form-control">{{post.round1_details}}</textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Round 2 of Interview</summary>
-                    <textarea type="textarea" value="{{post.round2_details}}" name="interviewR2" placeholder="Round 2 of Interview" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.round2_details}}" name="interviewR2" placeholder="Round 2 of Interview" class="form-control">{{post.round2_details}}</textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Round 3 of Interview</summary>
-                    <textarea type="textarea" value="{{post.round3_details}}" name="interviewR3" placeholder="Round 3 of Interview" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.round3_details}}" name="interviewR3" placeholder="Round 3 of Interview" class="form-control">{{post.round3_details}}</textarea>
                 </details>
             </div>
             <div class="form-group">
                 <details>
                     <summary>Final Comments</summary>
-                    <textarea type="textarea" value="{{post.final_summary}}" name="suggestions" placeholder="Final Comments" class="form-control"></textarea>
+                    <textarea type="textarea" value="{{post.final_summary}}" name="suggestions" placeholder="Final Comments" class="form-control">{{post.final_summary}}</textarea>
                 </details>
             </div>
             <button class="btn submit view-btn mt-3">Submit</button>

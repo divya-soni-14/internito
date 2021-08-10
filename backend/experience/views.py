@@ -98,6 +98,8 @@ def write(request):
         summary = aboutOT[:113]
         temp = Experience(
             user = User.objects.get(id = request.user.id),
+            resume = resume,
+            batch = batch,
             name = name,
             branch = ' '.join(branches),
             cgpa_cutoff = cgpa,
@@ -133,11 +135,46 @@ def post(request,id):
     except Experience.DoesNotExist:
         return HttpResponse('User does not exist.')
 
+@login_required()
 def edit(request,id):
     post = Experience.objects.get(pk = id)
     if(post.user == request.user):
         if request.method == 'POST':
-            pass
+            post.name = request.POST.get('name')
+            post.batch = request.POST.get('batch')
+            post.company = request.POST.get('company')
+            post.cgpa_cutoff = request.POST.get('cgpa')
+            post.period = request.POST.get('period')
+            post.branch = ' '.join(request.POST.getlist('branches'))
+            post.resume = request.POST.get('resume')
+            post.ot_summary = request.POST.get('aboutOT')
+            post.ot_question1 = request.POST.get('aboutOT1')
+            post.ot_question1_link = request.POST.get('linkOT1')
+            post.ot_question2 = request.POST.get('aboutOT2')
+            post.ot_question2_link = request.POST.get('linkOT2')
+            post.ot_question3 = request.POST.get('aboutOT3')
+            post.ot_question3_link = request.POST.get('linkOT3')
+            post.ot_question4 = request.POST.get('aboutOT4')
+            post.ot_question4_link = request.POST.get('linkOT4')
+            post.round1_details = request.POST.get('interviewR1')
+            post.round2_details = request.POST.get('interviewR2')
+            post.round3_details = request.POST.get('interviewR3')
+            post.final_summary = request.POST.get('suggestions')
+            post.summary = post.ot_summary[:113]
+            post.save()
+            user = request.user
+            is_current_user = False
+            if user.id == request.user.id :
+                is_current_user = True
+            posts = Experience.objects.filter(user = user)
+            count = len(posts)
+            context = {
+                'user' : user,
+                 'is_current_user' : is_current_user,
+                 'posts' : posts,
+                 'count' : count
+            }
+            return render(request, 'profile.html', context)
         else:
             return render(request, 'write.html', {'message': "edit your current Experience",'post':post})
     else:
