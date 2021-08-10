@@ -60,7 +60,7 @@
         {% if request.user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'profile' %}"
-            >Hello <strong>{{request.user}}!</strong></a>
+            >Hello <strong>{{ request.user.first_name }}!</strong></a>
         </li>
         {% endif %}
         <li class="nav-item">
