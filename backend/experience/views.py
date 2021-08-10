@@ -6,6 +6,7 @@ from .forms import RegisterForm
 from django.shortcuts import  render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 def home(request):
     responses = Experience.objects.all().order_by('-id')[:3]
@@ -89,5 +90,10 @@ def about(request):
 def post(request):
     return render(request, 'post.html', {})
 
-def profile(request):
-    return render(request, 'profile.html', {})
+
+def profile(request, username):
+    try : 
+        user = User.objects.get(username = username)
+        return render(request, 'profile.html', {})
+    except :
+        return HttpResponse('User does not exist.')

@@ -35,7 +35,7 @@
             <div class="card post-card mt-4">
                 <div class="card-body">
                     <h5 class="card-title">User Profile</h5>
-                    <p class="abt-info-title"><strong>Name: </strong>John Doe</p>
+                    <p class="abt-info-title"><strong>Name: </strong>{{ request.user.first_name }} {{ request.user.last_name }}</p>
                     <p class="abt-info-title"><strong>Email: </strong>sample@email.com</p>
                     <p class="abt-info-title"><strong>Username: </strong>user1234</p>
                     <p class="abt-info-title"><strong>Posts: </strong>2</p>

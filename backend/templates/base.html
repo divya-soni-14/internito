@@ -59,7 +59,7 @@
       <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' %}"
+          <a class="nav-link" href="{% url 'profile' request.user.username %}"
             >Hello <strong>{{ request.user.first_name }}!</strong></a>
         </li>
         {% endif %}

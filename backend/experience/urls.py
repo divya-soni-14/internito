@@ -12,5 +12,5 @@ urlpatterns = [
     path('write/', views.write, name='write'),
     path('about/', views.about, name='about'),
     path('post/', views.post, name='post'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/<username>', views.profile, name='profile'),
 ]
