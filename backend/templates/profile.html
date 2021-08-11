@@ -98,7 +98,7 @@
       }
 </style>
 
-<div class="container-fluid" style="font-family: 'Poppins', sans-serif">
+<div class="container-fluid body" style="font-family: 'Poppins', sans-serif">
     <div class="row">
         <div class="col-lg-3">
             <div class="card post-card mt-4">
@@ -127,13 +127,13 @@
                             <a type="button" class="btn btn-outline-primary" href="{% url 'post' post.pk %}">View</a>
                             {% if is_current_user %}
                                 <a href="{% url 'edit' post.pk %}" class="btn btn-outline-success">Edit</a>
-                                <a href="#popup1" class="btn btn-outline-danger">Delete</a>
-                                <div id="popup1" class="popup bg-secondary p-5 text-light" style="border:5px black solid;border-radius:50px">
+                                <a href="#popup1" id="delete-btn" class="btn btn-outline-danger">Delete</a>
+                                <div id="popup1" class="popup p-5 shadow-lg" style="border:1px black solid;border-radius:50px; background-color:#fff;">
                                     <h2>Are you Sure?</h2>
                                     <p>You won't be able to recover this later!!!</p>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="#" class="btn btn-success">No</a>
-                                        <a href="{% url 'delete' post.pk %}" class="btn btn-danger">Yes</a>
+                                        <a href="#" id="no-btn" class="btn btn-outline-success">No</a>
+                                        <a href="{% url 'delete' post.pk %}" class="btn btn-outline-danger">Yes</a>
                                       </div>
                                   </div>
                             {% endif %}
@@ -144,7 +144,23 @@
         {% endfor %}
             
         </div>
-        }
+        
     </div>
 </div>
+
+<script>
+    /*var body = document.querySelectorAll('.body:not(#popup1)');
+    var element = document.getElementById('popup1');
+    var delete_btn  = document.getElementById('delete-btn');
+    var no_btn  = document.getElementById('no-btn');
+    delete_btn.addEventListener('click', ()=>{
+        element.style.filter = 'blur(0px)';
+        body.style.filter = 'blur(5px)';
+    })
+    no_btn.addEventListener('click', ()=>{
+        body.style.filter = 'blur(0px)';
+        element.style.filter = 'blur(0px)';
+    })
+    */
+</script>
 {% endblock content %}

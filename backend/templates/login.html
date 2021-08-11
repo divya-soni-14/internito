@@ -87,6 +87,13 @@
 	input {
 		border-radius: 30px !important;
 	}
+
+	input.username {
+		border-radius: 30px 0px 0px 30px !important;
+	}
+	#basic-addon2 {
+		border-radius: 0px 30px 30px 0px !important;
+	}
 </style>
 <!-- //Custom Theme files -->
 <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -100,8 +107,13 @@
 			{% csrf_token %}
 			<div class="form-group">
 				<label for="email">Username</label>
-				<input type="text email" type="email" name="username" placeholder="Email" required="" class="form-control">
-				<small>Your username is {username}@student.nitw.ac.in</small>
+				
+				<div class="input-group">
+					<input type="text email" name="username" placeholder="username" required="" class="username form-control">
+					<div class="input-group-append">
+					  <span class="input-group-text" id="basic-addon2">@student.nitw.ac.in</span>
+					</div>
+				  </div>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
