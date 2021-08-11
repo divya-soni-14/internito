@@ -5,13 +5,13 @@
 <!-- <link rel="stylesheet" href="{% static 'css/register.css' %}"> -->
 
 <script type="application/x-javascript">
-	
-  addEventListener("load", function() { 
-    setTimeout(hideURLbar, 0); 
-  }, false); 
-  function hideURLbar(){ 
-    window.scrollTo(0,1); 
-  } 
+
+  addEventListener("load", function() {
+    setTimeout(hideURLbar, 0);
+  }, false);
+  function hideURLbar(){
+    window.scrollTo(0,1);
+  }
 </script>
 
 <style>
@@ -96,6 +96,7 @@
 <div class="card mt-5" style="max-width: 35rem; margin: 20px auto;">
 	<div class="card-body justify-content-center">
 		<h2 class="card-title text-center mb-4 mt-2">Create Your Account!</h2>
+		{{msg}}
 		<form action="" method="POST">
 			{% csrf_token %}
 			<div class="form-group">
@@ -129,19 +130,19 @@
 			<input class="btn submit view-btn mt-3" type="Submit" value="SignUp">
 			<p class="card-text register-text mb-2">Already have an account? <a href="{% url 'login' %}"> Login Now!</a>
 			</p>
-			
+
 		</form>
 	</div>
 </div>
 
 
 
-	
-	
-		
-	
+
+
+
+
 <script>
-	
+
 	{% if alert %}
 		var message = "{% for field in form %}{% if field.errors %}	{% for error in field.errors %}{{error}}\n{% endfor %}{% endif %}{% endfor %}".trim()
 		alert(message);

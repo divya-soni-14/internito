@@ -1,39 +1,113 @@
 from django.http.response import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponseRedirect
 from .models import *
 from .company import NAMES, BRANCHES, not_nitw
 from .forms import RegisterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import login,update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import login,update_session_auth_hash,authenticate
+from django.contrib.auth.forms import PasswordChangeForm,PasswordResetForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.urls import reverse
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
 # Create your views here.
-
-
+import random
+from django.core.mail import send_mail
+@login_required()
 def home(request):
     responses = Experience.objects.all().order_by('-id')[:3]
     return render(request, 'home.html', {'responses': responses})
+def password_reset_request(request):
+	if request.method == "POST":
+		password_reset_form = PasswordResetForm(request.POST)
+		if password_reset_form.is_valid():
+			data = password_reset_form.cleaned_data['email']
+			associated_users = User.objects.filter(Q(email=data))
+			if associated_users.exists():
+				for user in associated_users:
+					subject = "Password Reset Requested"
+					email_template_name = "password/password_reset_email.txt"
+					c = {
+					"email":user.email,
+					'domain':'127.0.0.1:8000',
+					'site_name': 'Website',
+					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+					"user": user,
+					'token': default_token_generator.make_token(user),
+					'protocol': 'http',
+					}
+					email = render_to_string(email_template_name, c)
+					try:
+						send_mail(subject, email, 'barebears567@gmail.com' , [user.email], fail_silently=False)
+					except BadHeaderError:
+						return HttpResponse('Invalid header found.')
+					return redirect ("/password_reset/done/")
+	password_reset_form = PasswordResetForm()
+	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
 
+def signin(request):
+    context={"msg":""}
+    if request.method == "POST":
+        user=User.objects.get(username=request.POST.get("username"))
+        ev=Emailverify.objects.filter(user=user).count()
+        user=authenticate(username=request.POST.get("username"),password=request.POST.get("password"))
+        if ev==1 and user is not None:
+            ev=Emailverify.objects.get(user=user)
+            print(ev.status)
+            if ev.status:
+                print("hello")
+                login(request,user)
+                return HttpResponseRedirect(reverse('home'))
+        elif ev==1:
+            context["msg"]="Username or Password Wrong"
+            return render(request,'login.html',context)
+        elif ev>1:
+            ev=Emailverify.objects.filter(user=user).delete()
+        sendcode(user,user.email)
+        return HttpResponseRedirect(reverse('verifycode',kwargs={'user':user}))
+    else:
+        return render(request,'login.html',context)
+def sendcode(user,email):
+    code=random.randrange(100000,999999)
+    ad=Emailverify.objects.create(user=user,code=code,status=False)
+    ad.save()
+    print(email)
+    send_mail(
+         'Welcome to interNito',
+         'Confirm your email by Verification code {} ,you are receiving this email as you wants email verfication with us'.format(ad.code),
+         'barebears567@gmail.com',
+         [email],
+         fail_silently=False)
+def verifycode(request,user):
 
+    context={"msg":""}
+    if request.method == "POST":
+        code=request.POST.get("code")
+        ev=Emailverify.objects.get(user=User.objects.get(username=user))
+        if int(code) == int(ev.code) :
+            ev.status="True"
+            ev.save()
+            print(ev.status)
+            return HttpResponseRedirect(reverse(signin))
+        else:
+            context["msg"]="Wrong Code Entered"
+    return render(request,"verifycode.html",context)
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         email = request.POST['email']
         print(email)
         if not_nitw(email):
-            context = {
-                'form': form,
-                'alert': True,
-                'message': "Please Use NITW MAIL"
-            }
-            # print(form.error_messages)
+            context={"msg":"Please Enter Student Mail!!!"}
             return render(request, 'register.html', context=context)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return render(request, 'filter.html', {})
+            return HttpResponseRedirect(reverse(signin))
         else:
             context = {
                 'form': form,
@@ -51,7 +125,7 @@ def register(request):
         }
         return render(request, 'register.html', context=context)
 
-
+@login_required()
 def company(request):
     if request.method == 'POST':
         filter = request.POST['filter']
@@ -77,7 +151,7 @@ def company(request):
     elif request.method == 'GET':
         return render(request, 'filter.html', {'companies': NAMES})
 
-
+@login_required()
 def experience(request):
     responses = Experience.objects.order_by('company', '-id')
     message = 'All Interview Experiences'
@@ -151,11 +225,11 @@ def write(request):
         return render(request, 'profile.html', context)
     return render(request, 'write.html', {'message': False, 'companies': NAMES[:len(NAMES)-8]})
 
-
+@login_required()
 def about(request):
     return render(request, 'about.html', {})
 
-
+@login_required()
 def post(request, id):
     try:
         response = Experience.objects.get(pk=id)
@@ -215,7 +289,7 @@ def edit(request, id):
         responses = Experience.objects.all().order_by('-id')[:3]
         return render(request, 'home.html', {'responses': responses})
 
-
+@login_required()
 def delete(request, id):
     try:
         response = Experience.objects.get(pk=id)
@@ -242,7 +316,7 @@ def delete(request, id):
         responses = Experience.objects.all().order_by('-id')[:3]
         return render(request, 'home.html', {'responses': responses})
 
-
+@login_required()
 def profile(request, username):
     try:
         user = User.objects.get(username=username)

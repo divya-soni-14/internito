@@ -24,7 +24,11 @@ class Experience(models.Model):
     round2_details = models.TextField(blank = True, null = True)
     round3_details = models.TextField(blank = True, null = True)
     final_summary = models.TextField(blank = True, null = True)
-    
+
     def __str__(self):
         return self.name + '_' + self.company
-    
+
+class Emailverify(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    code=models.IntegerField(null=True,blank=True)
+    status=models.BooleanField(null=True,blank=True)
