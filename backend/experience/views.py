@@ -38,7 +38,7 @@ def register(request):
             # print(form.error_messages)
             return render(request, 'register.html',context=context)
     elif request.method == "GET":
-        message = "Good Morning"
+        message = "Register"
         form = RegisterForm()
         context = {
         'form' : form,
@@ -134,7 +134,7 @@ def write(request):
                 'count' : count
         }
         return render(request, 'profile.html', context)
-    return render(request, 'write.html', {'message': False})
+    return render(request, 'write.html', {'message': False,'companies':NAMES[:len(NAMES)-8]})
 
 
 def about(request):
@@ -188,7 +188,7 @@ def edit(request,id):
             }
             return render(request, 'profile.html', context)
         else:
-            return render(request, 'write.html', {'message': "edit your current Experience",'post':post})
+            return render(request, 'write.html', {'message': "edit your current Experience",'post':post,'companies':NAMES[:len(NAMES)-8]})
     else:
         responses = Experience.objects.all().order_by('-id')[:3]
         return render(request, 'home.html',{'responses':responses})
