@@ -145,7 +145,8 @@ def post(request,id):
         response = Experience.objects.get(pk = id)
         return render(request, 'post.html', {'response': response})
     except Experience.DoesNotExist:
-        return HttpResponse('User does not exist.')
+        responses = Experience.objects.all().order_by('-id')[:3]
+        return render(request, 'home.html',{'responses':responses})
 
 @login_required()
 def edit(request,id):
@@ -212,7 +213,8 @@ def delete(request,id):
         }
         return render(request, 'profile.html', context)
     except Experience.DoesNotExist:
-        return HttpResponse('User does not exist.')
+        responses = Experience.objects.all().order_by('-id')[:3]
+        return render(request, 'home.html',{'responses':responses})
 
 def profile(request, username):
     try : 
@@ -230,4 +232,5 @@ def profile(request, username):
         }
         return render(request, 'profile.html', context)
     except User.DoesNotExist:
-        return HttpResponse('User does not exist.')
+        responses = Experience.objects.all().order_by('-id')[:3]
+        return render(request, 'home.html',{'responses':responses})
