@@ -278,7 +278,14 @@
                     <textarea type="textarea" value="{{post.final_summary}}" name="suggestions" placeholder="Final Comments" class="form-control">{{post.final_summary}}</textarea>
                 </details>
             </div>
-            <button class="btn submit view-btn mt-3">Submit</button>
+            <button class="btn submit view-btn mt-3">
+                {% if update %} 
+                Update
+                {% else %}
+                Submit
+                {% endif %}
+            </button>
+
         </form>
     </div>
 </div>
