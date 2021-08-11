@@ -1,74 +1,73 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <link rel="stylesheet" href="{% static 'css/experience.css' %}" />
 
 <style>
   .card {
-  background-color: white;
-  border-radius: 30px;
-}
+    background-color: white;
+    border-radius: 30px;
+  }
 
-.card-text {
-  text-align: center;
-}
+  .card-text {
+    text-align: center;
+  }
 
-.name {
-  font-weight: 500;
-  margin-bottom: 0px;
-  font-size: 1.2rem;
-}
+  .name {
+    font-weight: 500;
+    margin-bottom: 0px;
+    font-size: 1.2rem;
+  }
 
-.company {
-  font-size: 0.8rem;
-  text-transform: lowercase;
-  color: rgb(99, 99, 99);
-}
+  .company {
+    font-size: 0.8rem;
+    text-transform: lowercase;
+    color: rgb(99, 99, 99);
+  }
 
-.company strong {
-  font-weight: 600;
-}
+  .company strong {
+    font-weight: 600;
+  }
 
-.view-btn {
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: white;
-  background-color: #76b852;
-  border-radius: 45px;
-  border: 1px solid white;
-}
+  .view-btn {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: white;
+    background-color: #76b852;
+    border-radius: 45px;
+    border: 1px solid white;
+  }
 
-.view-btn:hover {
-  color: black !important;
-  border-radius: 45px;
-  border: 1px solid #76b852;
-  background-color: white;
-  outline: none;
-  box-shadow: none;
-}
-.view-btn:focus {
-  outline: none;
-  box-shadow: none;
-}
+  .view-btn:hover {
+    color: black !important;
+    border-radius: 45px;
+    border: 1px solid #76b852;
+    background-color: white;
+    outline: none;
+    box-shadow: none;
+  }
+  .view-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
 </style>
 
 <main role="main">
   <section class="jumbotron text-center bg-lime">
     <div class="container text-light">
-      <h1><strong>inter<big style="color: black;">N</big>ito</strong></h1>
+      <h1>
+        <strong>inter<big style="color: black">N</big>ito</strong>
+      </h1>
       <p class="mt-2 lead text-light">
         Get to know students experience of their intern
       </p>
-      <a class="btn view-btn" href="{% url 'write'%}">
-          Tell Us Yours Now!!
-      </a>
+      <a class="btn view-btn" href="{% url 'write'%}"> Tell Us Yours Now! </a>
     </div>
   </section>
-    <div class="album py-5 bg-lime-invert">
+  <div class="album py-5 bg-lime-invert">
     <div class="container">
       <h1 class="mb-4">
-        <div class="head p-2" style="text-align: center;">Latest Interview Experiences</div>
+        <div class="head p-2" style="text-align: center">
+          Latest Interview Experiences
+        </div>
       </h1>
       <div class="row">
         {% for response in responses %}
@@ -82,20 +81,24 @@
                 {{response.summary }}
               </p>
               <p class="card-text name">
-                <a href="{% url 'profile' response.user.username %}">{{response.name}}</a>
+                <a href="{% url 'profile' response.user.username %}"
+                  >{{response.name}}</a
+                >
               </p>
               <p class="card-text company capitalize">
                 interned at <strong>{{response.company}}</strong>
               </p>
 
-              <a href="{% url  'post' response.pk %}" 
+              <a
+                href="{% url  'post' response.pk %}"
                 type="button"
                 class="
                   btn btn-sm btn-outline-secondary
                   view-btn
                   w-100
                   text-center
-                ">
+                "
+              >
                 View
               </a>
             </div>
