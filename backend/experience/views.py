@@ -121,7 +121,19 @@ def write(request):
             final_summary = suggestions,
         )
         temp.save()
-        return render(request, 'write.html', {'message': False})
+        user = request.user
+        is_current_user = False
+        if user.id == request.user.id :
+            is_current_user = True
+        posts = Experience.objects.filter(user = user)
+        count = len(posts)
+        context = {
+            'user' : user,
+                'is_current_user' : is_current_user,
+                'posts' : posts,
+                'count' : count
+        }
+        return render(request, 'profile.html', context)
     return render(request, 'write.html', {'message': False})
 
 

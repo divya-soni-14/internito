@@ -40,7 +40,9 @@
               <summary class="card-title">ONLINE TEST</summary>
               <h5 class="card-text">About Online Test</h3>
               <p class="card-text blog-text">
-                {{ response.ot_summary }}
+                <pre>
+{{ response.ot_summary }}
+                </pre>
               </p>
             <hr />
 
@@ -49,30 +51,63 @@
             {% if response.ot_question1 %}
               <h5 class="card-text">Online Test Question - 1</h3>
               <p class="card-text blog-text">
-                {{ response.ot_question1 }}
+                <pre>
+{{ response.ot_question1 }}
+                </pre>
               </p>
+              
+              {% if response.ot_question1_link %}
+              <p class="card-text blog-text">
+                To get some idea and source,  Follow this LINK : <a href="{{response.ot_question1_link}}" target="_blank"> Question 1 Source </a>
+              </p>
+              {% endif %}
+                
             <hr />
             {% endif %}
               
             {% if response.ot_question2 %}
               <h5 class="card-text">Online Test Question - 2</h3>
               <p class="card-text blog-text">
-                {{ response.ot_question2 }}
+                <pre>
+{{ response.ot_question2 }}
+                </pre>
               </p>
+
+              {% if response.ot_question2_link %}
+              <p class="card-text blog-text">
+                To get some idea and source,  Follow this LINK : <a href="{{response.ot_question2_link}}" target="_blank"> Question 2 Source </a>
+              </p>
+              {% endif %}
+
             <hr />
             {% endif %}
             {% if response.ot_question3 %}
               <h5 class="card-text">Online Test Question - 3</h3>
               <p class="card-text blog-text">
-                {{ response.ot_question3 }}
+                <pre>
+{{ response.ot_question3 }}
+                </pre>
               </p>
+              
+              {% if response.ot_question3_link %}
+              <p class="card-text blog-text">
+                To get some idea and source,  Follow this LINK : <a href="{{response.ot_question3_link}}" target="_blank"> Question 3 Source </a>
+              </p>
+              {% endif %}
             <hr />
             {% endif %}
             {% if response.ot_question4 %}
               <h5 class="card-text">Online Test Question - 4</h3>
               <p class="card-text blog-text">
-                {{ response.ot_question4 }}
+                <pre>
+{{ response.ot_question4 }}
+                </pre>
               </p>
+              {% if response.ot_question4_link %}
+              <p class="card-text blog-text">
+                To get some idea and source,  Follow this LINK : <a href="{{response.ot_question4_link}}" target="_blank"> Question 4 Source </a>
+              </p>
+              {% endif %}
             <hr />
             {% endif %}
             </details>  
@@ -85,7 +120,9 @@
             <details>
               <summary class="card-title">Round 1 Interview</summary>
               <p class="card-text blog-text">
-                {{ response.round1_details }}
+                <pre>
+{{ response.round1_details }}
+                </pre>
               </p>
             <hr />
             </details>
@@ -97,7 +134,9 @@
             <details>
               <summary class="card-title">Round 2 Interview</summary>
               <p class="card-text blog-text">
-                {{ response.round2_details }}
+                <pre>
+{{ response.round2_details }}
+                </pre>
               </p>
             <hr />
               </details>
@@ -108,7 +147,22 @@
             <details>
               <summary class="card-title">Round 3 Interview</summary>
               <p class="card-text blog-text">
-                {{ response.round3_details }}
+                <pre>
+{{ response.round3_details }}
+                </pre>
+              </p>
+            <hr />
+            </details>
+          {% endif %}
+
+          <!-- Overall summary -->
+          {% if response.final_summary %}
+            <details>
+              <summary class="card-title">FINAL COMMENT</summary>
+              <p class="card-text blog-text">
+                <pre>
+{{ response.final_summary }}
+                </pre>
               </p>
             <hr />
             </details>
@@ -121,11 +175,14 @@
     <div class="col-lg-3">
       <div class="card info-card mt-4">
         <div class="card-body">
-          <h4 class="title">About the Author</h4>
-          <p class="abt-info-title"><strong> Name: </strong> {{ response.name }}</p>
+          <h4 class="title">About the Applicant</h4>
+          <p class="abt-info-title"><strong>Name: </strong><a href="{% url 'profile' response.user.username %}">{{response.name}}</a></p>
+          <p class="abt-info-title"><strong>Batch:</strong> {{ response.batch }}</p>
           <p class="abt-info-title"><strong>Company:</strong> {{ response.company }}</p>
+          <p class="abt-info-title"><strong>Drive:</strong> {{ response.period }}</p>
           <p class="abt-info-title"><strong>Eligible Branches:</strong>{{ response.branch }}</p>
           <p class="abt-info-title"><strong>CGPA Cut Off:</strong> {{ response.cgpa_cutoff }}</p>
+          <p class="abt-info-title"><strong>Resume: </strong> <a href="{{ response.resume }}" target="_blank"> G-Drive </a> </p>
         </div>
       </div>
     </div>

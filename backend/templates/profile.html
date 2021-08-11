@@ -122,7 +122,7 @@
                             <h6>Eligible Branches : {{ post.branch }}</h6>
                             <h6>CGPA cut-off : {{ post.cgpa_cutoff }}</h6>
                             <p class="card-text blog-text">
-                                {{ post.summary }}
+                                {{ post.summary }}...
                             </p>
                             <a type="button" class="btn btn-outline-primary" href="{% url 'post' post.pk %}">View</a>
                             {% if is_current_user %}

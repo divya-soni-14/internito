@@ -116,5 +116,11 @@
 		</form>
 	</div>
 </div>
-
+<script>
+	var message = `{{ form.errors.as_text }}`
+	var alert_message = message.split('\n')[1]
+	console.log(alert_message.length)
+	if(alert_message.length > 5)
+		alert(alert_message);
+</script>
 {% endblock content %}
