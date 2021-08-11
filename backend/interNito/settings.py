@@ -133,6 +133,6 @@ LOGIN_URL = 'login'
 
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT='587'
-EMAIL_HOST_USER='barebears567@gmail.com'
-EMAIL_HOST_PASSWORD='Barebears@123'
+EMAIL_HOST_USER='internito123@gmail.com'
+EMAIL_HOST_PASSWORD='nitwinternito'
 EMAIL_USE_TLS=True
