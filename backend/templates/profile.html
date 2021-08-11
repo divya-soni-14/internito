@@ -118,6 +118,9 @@
       </div>
     </div>
     <div class="col-lg-9">
+      {% if msg_empty %} <br><br>
+      <p><strong>{{msg_empty}}</strong></p>
+      {% endif %} 
       {% for post in posts %}
       <div class="row">
         <div class="col">
