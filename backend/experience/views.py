@@ -72,6 +72,7 @@ def signin(request):
         return HttpResponseRedirect(reverse('verifycode',kwargs={'user':user}))
     else:
         return render(request,'login.html',context)
+    
 def sendcode(user,email):
     code=random.randrange(100000,999999)
     ad=Emailverify.objects.create(user=user,code=code,status=False)
@@ -79,10 +80,11 @@ def sendcode(user,email):
     print(email)
     send_mail(
          'Welcome to interNito',
-         'Confirm your email by Verification code {} ,you are receiving this email as you wants email verfication with us'.format(ad.code),
-         'barebears567@gmail.com',
+         'Confirm your email by Verification code {} ,you are receiving this email as you want email verfication with us'.format(ad.code),
+         'internito123@gmail.com',
          [email],
          fail_silently=False)
+    
 def verifycode(request,user):
 
     context={"msg":""}
@@ -97,6 +99,7 @@ def verifycode(request,user):
         else:
             context["msg"]="Wrong Code Entered"
     return render(request,"verifycode.html",context)
+
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)

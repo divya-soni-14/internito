@@ -96,7 +96,15 @@
 <div class="card mt-5" style="max-width: 35rem; margin: 20px auto;">
 	<div class="card-body justify-content-center">
 		<h2 class="card-title text-center mb-4 mt-2">Create Your Account!</h2>
-		{{msg}}
+		{% if msg %}
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			
+			{{msg}}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		{% endif %}
 		<form action="" method="POST">
 			{% csrf_token %}
 			<div class="form-group">
