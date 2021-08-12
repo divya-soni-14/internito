@@ -94,16 +94,21 @@
 
 <div class="card mt-5" style="max-width: 35rem; margin: 20px auto;">
 	<div class="card-body justify-content-center">
-<div class="jumbotron">
-  <h3 class="card-title text-center mb-4 mt-2">Feedback Form
-  </h3>
-
-  <form  method="post">
-    {% csrf_token %}
-    <label for="feedback">FeedBack : </label>
-    <br>
-       <textarea name="feedback" rows="8" cols="55"id="id_feedback"></textarea>
-       <input type="submit" class="btn submit view-btn mt-3" value="Post">
-  </form>
+		<h2 class="card-title text-center mb-4 mt-2">Feedback Form</h2>
+		<form method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<div class="input-group">
+					<h5 style="text-align: center;">
+						Kindly give us feedback so we make your experience of this website better!
+						<br><br>
+					</h5>
+					<br><br><br>
+					<textarea name="feedback" rows="8" cols="55" id="id_feedback" style="display: block; margin-left: auto; margin-right: auto;"></textarea>
+					<input type="submit" class="btn submit view-btn mt-3" value="Post">
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 {% endblock content %}

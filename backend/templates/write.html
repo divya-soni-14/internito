@@ -76,11 +76,11 @@
 <div class="card mt-5" style="max-width: 80%; margin: 20px auto;">
     <div class="card-body justify-content-center main-body">
         <h2 class="card-title text-center mb-4 mt-2">Fill the Form Below to
-
+            
             {% if message %}
             {{message}}
                 {% else %}
-
+                
                 add new experience
             {% endif %}</h2>
         <form action="" method="POST">
@@ -94,27 +94,27 @@
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" name="email" value="{{request.user.email}}" required>
+                  <input type="email" class="form-control" id="email" name="email" value="{{request.user.email}}" required> 
                 </div>
             </div>
             <div class="form-group row">
                 <label for="batch" class="col-sm-2 col-form-label">Batch</label>
                 <div class="col-sm-10">
                     <select type="select" name="batch" placeholder="Batch"  class="form-control" required>
-                        <option value="2017-2021"
+                        <option value="2017-2021" 
                         {% ifequal '2017-2021' post.batch %} selected
-
+                            
                         {% endifequal %}
                             >2017-2021</option>
                         <option value="2018-2022" {% ifequal '2018-2022' post.batch %} selected
-
+                            
                         {% endifequal %}
                         >2018-2022</option>
                         <option value="2019-2023" {% ifequal '2019-2023' post.batch %} selected
-
+                            
                         {% endifequal %}>2019-2023</option>
                         <option value="2020-2024" {% ifequal '2020-2024' post.batch %} selected
-
+                            
                         {% endifequal %}>2020-2024</option>
                     </select>
                 </div>
@@ -138,28 +138,26 @@
                         <input type="text cgpa" value="{{post.cgpa_cutoff}}" type="cgpa" name="cgpa" placeholder="CGPA"  class="form-control" required>
                     </div>
             </div>
-
             <div class="form-group row">
                 <label for="batch" class="col-sm-2 col-form-label">Experience Type</label>
                 <div class="col-sm-10">
                     <select type="select" name="period" placeholder="Batch"  class="form-control" required>
-                        <option value="Intern"
+                        <option value="Intern" 
                         {% ifequal 'Intern' post.period %} selected
-
+                            
                         {% endifequal %}
                             >Intern</option>
                         <option value="Placement" {% ifequal 'Placement' post.period %} selected
-
+                            
                         {% endifequal %}
                         >Placement</option>
                     </select>
                 </div>
             </div>
-
             <div class="form-group row">
                 <label for="branches" class="col-sm-2 col-form-label">Eligible Branches</label>
                 <div class="col-sm-10">
-                    <input type="checkbox" name="branches" value="CSE" class="form-group"
+                    <input type="checkbox" name="branches" value="CSE" class="form-group" 
                     {% if 'CSE' in post.branch %}
                         checked
                     {% endif %}
@@ -287,7 +285,7 @@
                 </details>
             </div>
             <button class="btn submit view-btn mt-3">
-                {% if update %}
+                {% if update %} 
                 Update
                 {% else %}
                 Submit
