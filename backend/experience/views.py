@@ -55,23 +55,28 @@ def password_reset_request(request):
 def signin(request):
     context={"msg":""}
     if request.method == "POST":
-        user=User.objects.get(username=request.POST.get("username"))
-        ev=Emailverify.objects.filter(user=user).count()
-        user=authenticate(username=request.POST.get("username"),password=request.POST.get("password"))
-        if ev==1 and user is not None:
-            ev=Emailverify.objects.get(user=user)
-            print(ev.status)
-            if ev.status:
-                print("hello")
-                login(request,user)
-                return HttpResponseRedirect(reverse('home'))
-        elif ev==1:
-            context["msg"]="Username or Password Wrong"
+        user=User.objects.filter(username=request.POST.get("username")).count()
+        if user:
+            user=User.objects.get(username=request.POST.get("username"))
+            ev=Emailverify.objects.filter(user=user).count()
+            user=authenticate(username=request.POST.get("username"),password=request.POST.get("password"))
+            if ev==1 and user is not None:
+                ev=Emailverify.objects.get(user=user)
+                print(ev.status)
+                if ev.status:
+                    print("hello")
+                    login(request,user)
+                    return HttpResponseRedirect(reverse('home'))
+            elif ev==1:
+                context["msg"]="Username or Password Wrong"
+                return render(request,'login.html',context)
+            elif ev>1:
+                ev=Emailverify.objects.filter(user=user).delete()
+            sendcode(user,user.email)
+            return HttpResponseRedirect(reverse('verifycode',kwargs={'user':user}))
+        else:
+            context["msg"]="NO USER FOUND!!"
             return render(request,'login.html',context)
-        elif ev>1:
-            ev=Emailverify.objects.filter(user=user).delete()
-        sendcode(user,user.email)
-        return HttpResponseRedirect(reverse('verifycode',kwargs={'user':user}))
     else:
         return render(request,'login.html',context)
 
