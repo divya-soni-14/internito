@@ -33,20 +33,56 @@
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: keep-all;       /* Internet Explorer 5.5+ */
 }
+
+.card {
+  margin: 15px;
+
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.post-section {
+  background-color: #f3f3f3;
+}
+
+.small-text {
+  font-size: 1.5rem;
+}
+
+.col-lg-9, .col-lg-3 {
+  margin: 0px !important;
+  padding: 0;
+}
+summary {
+  padding: 0;
+  margin: 0 !important;
+}
+
+details {
+  padding: 10px ;
+}
+
+.first-title {
+  margin-top: 10px;
+}
 </style>
 
 <div class="container-fluid" style="font-family: 'Poppins', sans-serif">
   <div class="row">
     <div class="col-lg-9">
       <div class="post-card mt-4">
-        <div class="card-body">
+ 
 
 
           <!-- ONLINE TEST -->
           {% if response.ot_summary %}
-            <details>
-              <summary class="card-title">ONLINE TEST</summary>
-              <h5 class="card-text">About Online Test</h3>
+          <div class="card"> 
+            <div class="card-body post-section">
+                        <details>
+              <summary class="card-title small-text">ONLINE TEST</summary>
+              <h5 class="card-text first-title">About Online Test</h3>
               <p class="card-text blog-text">
                 <pre>
 {{ response.ot_summary }}
@@ -57,7 +93,7 @@
 
 
             {% if response.ot_question1 %}
-              <h5 class="card-text">Online Test Question - 1</h3>
+              <h5 class="card-text ">Online Test Question - 1</h3>
               <p class="card-text blog-text">
                 <pre>
 {{ response.ot_question1 }}
@@ -119,14 +155,18 @@
             <hr />
             {% endif %}
             </details>
+          </div> 
+          </div>
 
           {% endif %}
 
 
           <!-- ROUND 1 Interview -->
           {% if response.round1_details %}
+          <div class="card"> 
+            <div class="card-body post-section">
             <details>
-              <summary class="card-title">Round 1 Interview</summary>
+              <summary class="card-title small-text">Round 1 Interview</summary>
               <p class="card-text blog-text">
                 <pre>
 {{ response.round1_details }}
@@ -134,13 +174,17 @@
               </p>
             <hr />
             </details>
+            </div>
+            </div>
           {% endif %}
 
 
           <!-- ROUND 2 Interview -->
           {% if response.round2_details %}
+          <div class="card"> 
+            <div class="card-body post-section">
             <details>
-              <summary class="card-title">Round 2 Interview</summary>
+              <summary class="card-title small-text">Round 2 Interview</summary>
               <p class="card-text blog-text">
                 <pre>
 {{ response.round2_details }}
@@ -148,12 +192,17 @@
               </p>
             <hr />
               </details>
+              </div>
+              </div>
+
           {% endif %}
 
           <!-- ROUND 3 Interview -->
           {% if response.round3_details %}
+          <div class="card"> 
+            <div class="card-body post-section">
             <details>
-              <summary class="card-title">Round 3 Interview</summary>
+              <summary class="card-title small-text">Round 3 Interview</summary>
               <p class="card-text blog-text">
                 <pre>
 {{ response.round3_details }}
@@ -161,12 +210,17 @@
               </p>
             <hr />
             </details>
+            </div>
+            </div>
+
           {% endif %}
 
           <!-- Overall summary -->
           {% if response.final_summary %}
+          <div class="card"> 
+            <div class="card-body post-section">
             <details>
-              <summary class="card-title">FINAL COMMENT</summary>
+              <summary class="card-title small-text">Final Comment</summary>
               <p class="card-text blog-text">
                 <pre>
 {{ response.final_summary }}
@@ -174,25 +228,29 @@
               </p>
             <hr />
             </details>
+            </div>
+            </div>
           {% endif %}
 
           <hr />
         </div>
       </div>
-    </div>
+
     <div class="col-lg-3">
-      <div class="card info-card mt-4">
+      <div class="post-card mt-4">
+    <div class="card">
         <div class="card-body">
           <h4 class="title">About the Applicant</h4>
           <p class="abt-info-title"><strong>Name: </strong><a href="{% url 'profile' response.user.username %}">{{response.name}}</a></p>
           <p class="abt-info-title"><strong>Batch:</strong> {{ response.batch }}</p>
           <p class="abt-info-title"><strong>Company:</strong> {{ response.company }}</p>
           <p class="abt-info-title"><strong>Drive:</strong> {{ response.period }}</p>
-          <p class="abt-info-title"><strong>Eligible Branches:</strong>{{ response.branch }}</p>
+          <p class="abt-info-title"><strong>Eligible Branches:</strong> {{ response.branch }}</p>
           <p class="abt-info-title"><strong>CGPA Cut Off:</strong> {{ response.cgpa_cutoff }}</p>
           <p class="abt-info-title"><strong>Resume: </strong> <a href="{{ response.resume }}" target="_blank"> G-Drive </a> </p>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>
