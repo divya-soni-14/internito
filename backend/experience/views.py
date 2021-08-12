@@ -305,6 +305,8 @@ def delete(request, id):
 def profile(request, username):
     try:
         user = User.objects.get(username=username)
+        if user.is_superuser and not request.user.is_superuser:
+            return HttpResponseRedirect(reverse('home'))
         is_current_user = False
         if user.id == request.user.id:
             is_current_user = True
@@ -320,7 +322,7 @@ def profile(request, username):
             'count': count,
             'msg_empty': msg_empty,
         }
-        if user.is_staff:
+        if user.is_superuser:
             context['all_users'] = User.objects.all().order_by('pk')
             context['staff_id'] = True
         elif request.user.is_staff:

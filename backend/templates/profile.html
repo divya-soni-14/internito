@@ -144,7 +144,7 @@
             <h4 class="card-title">All Resistered Users : {{ all_users|length }}</h4>
       {% for site_user in all_users %}
         <p> {{ forloop.counter }}. )
-      {% if site_user.is_staff %}
+      {% if site_user.is_superuser %}
             <strong>Super User :</strong>
       {% endif %}
       <a href="{% url 'profile' site_user.username %}" >{{site_user.first_name}} {{site_user.last_name}}</a></p>
