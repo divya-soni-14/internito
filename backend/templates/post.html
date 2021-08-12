@@ -73,12 +73,12 @@ details {
   <div class="row">
     <div class="col-lg-9">
       <div class="post-card mt-4">
- 
+
 
 
           <!-- ONLINE TEST -->
           {% if response.ot_summary %}
-          <div class="card"> 
+          <div class="card">
             <div class="card-body post-section">
                         <details>
               <summary class="card-title small-text">ONLINE TEST</summary>
@@ -155,7 +155,7 @@ details {
             <hr />
             {% endif %}
             </details>
-          </div> 
+          </div>
           </div>
 
           {% endif %}
@@ -163,7 +163,7 @@ details {
 
           <!-- ROUND 1 Interview -->
           {% if response.round1_details %}
-          <div class="card"> 
+          <div class="card">
             <div class="card-body post-section">
             <details>
               <summary class="card-title small-text">Round 1 Interview</summary>
@@ -181,7 +181,7 @@ details {
 
           <!-- ROUND 2 Interview -->
           {% if response.round2_details %}
-          <div class="card"> 
+          <div class="card">
             <div class="card-body post-section">
             <details>
               <summary class="card-title small-text">Round 2 Interview</summary>
@@ -199,7 +199,7 @@ details {
 
           <!-- ROUND 3 Interview -->
           {% if response.round3_details %}
-          <div class="card"> 
+          <div class="card">
             <div class="card-body post-section">
             <details>
               <summary class="card-title small-text">Round 3 Interview</summary>
@@ -217,7 +217,7 @@ details {
 
           <!-- Overall summary -->
           {% if response.final_summary %}
-          <div class="card"> 
+          <div class="card">
             <div class="card-body post-section">
             <details>
               <summary class="card-title small-text">Final Comment</summary>
@@ -247,7 +247,9 @@ details {
           <p class="abt-info-title"><strong>Drive:</strong> {{ response.period }}</p>
           <p class="abt-info-title"><strong>Eligible Branches:</strong> {{ response.branch }}</p>
           <p class="abt-info-title"><strong>CGPA Cut Off:</strong> {{ response.cgpa_cutoff }}</p>
+          {% if response.resume %}
           <p class="abt-info-title"><strong>Resume: </strong> <a href="{{ response.resume }}" target="_blank"> G-Drive </a> </p>
+          {% endif %}
         </div>
       </div>
     </div>
