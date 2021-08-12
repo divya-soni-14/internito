@@ -22,6 +22,8 @@ import random
 from django.core.mail import send_mail
 @login_required()
 def home(request):
+    if request.user.is_staff:
+        print('HELLO')
     responses = Experience.objects.all().order_by('-id')[:3]
     return render(request, 'home.html', {'responses': responses})
 def password_reset_request(request):
@@ -63,7 +65,7 @@ def signin(request):
             if ev==1 and user is not None:
                 ev=Emailverify.objects.get(user=user)
                 print(ev.status)
-                if ev.status:
+                if ev.status or user.is_staff:
                     print("hello")
                     login(request,user)
                     return HttpResponseRedirect(reverse('home'))
