@@ -189,9 +189,6 @@ def experience(request):
     message = 'All Interview Experiences'
     return render(request, 'experience.html', {'responses': responses, 'message': message})
 
-# Pending Work
-
-
 @login_required()
 def write(request):
     if request.method == 'POST':
@@ -289,8 +286,7 @@ def edit(request, id):
         else:
             return render(request, 'write.html', {'message': "edit your current Experience", 'post': post, 'companies': NAMES[:len(NAMES)-8], 'update': True})
     else:
-        responses = Experience.objects.all().order_by('-id')[:3]
-        return render(request, 'home.html', {'responses': responses})
+        return HttpResponseRedirect(reverse('home'))
 
 @login_required()
 def delete(request, id):
@@ -322,10 +318,11 @@ def profile(request, username):
             'count': count,
             'msg_empty': msg_empty,
         }
+        if request.user.is_staff:
+            context['all_users'] = User.objects.all().order_by('first_name')
         return render(request, 'profile.html', context)
     except User.DoesNotExist:
-        responses = Experience.objects.all().order_by('-id')[:3]
-        return render(request, 'home.html', {'responses': responses})
+        return HttpResponseRedirect(reverse('home'))
 
 @login_required()
 def change_password(request):
