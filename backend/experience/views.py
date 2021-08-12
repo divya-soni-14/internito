@@ -320,6 +320,8 @@ def profile(request, username):
         }
         if request.user.is_staff:
             context['all_users'] = User.objects.all().order_by('first_name')
+        elif not is_current_user:
+            return HttpResponseRedirect(reverse('home'))
         return render(request, 'profile.html', context)
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse('home'))
