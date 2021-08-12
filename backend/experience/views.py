@@ -22,8 +22,8 @@ import random
 from django.core.mail import send_mail
 @login_required()
 def home(request):
-    if request.user.is_staff:
-        print('HELLO')
+    # if not request.user.is_staff:
+    #     return HttpResponseRedirect(reverse('write'))
     responses = Experience.objects.all().order_by('-id')[:3]
     return render(request, 'home.html', {'responses': responses})
 def password_reset_request(request):
@@ -154,6 +154,8 @@ class FeedbackReceive(TemplateView):
     template_name='tq.html'
 @login_required()
 def company(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect(reverse('write'))
     msg_empty= False
     if request.method == 'POST':
         filter = request.POST['filter']
@@ -181,6 +183,8 @@ def company(request):
 
 @login_required()
 def experience(request):
+    if not request.user.is_staff:
+        return HttpResponseRedirect(reverse('write'))
     responses = Experience.objects.order_by('company', '-id')
     message = 'All Interview Experiences'
     return render(request, 'experience.html', {'responses': responses, 'message': message})
@@ -251,8 +255,7 @@ def post(request, id):
         response = Experience.objects.get(pk=id)
         return render(request, 'post.html', {'response': response})
     except Experience.DoesNotExist:
-        responses = Experience.objects.all().order_by('-id')[:3]
-        return render(request, 'home.html', {'responses': responses})
+        return HttpResponseRedirect(reverse('home'))
 
 
 @login_required()

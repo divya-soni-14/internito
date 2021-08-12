@@ -62,6 +62,8 @@
       <a class="btn view-btn" href="{% url 'write'%}"> Tell Us Yours Now! </a>
     </div>
   </section>
+  
+  {% if request.user.is_staff %}
   <div class="album py-5 bg-lime-invert">
     <div class="container">
       <h1 class="mb-4">
@@ -108,5 +110,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
+    
 </main>
 {% endblock content %}

@@ -63,12 +63,16 @@
             >Hello <strong>{{ request.user.first_name }}!</strong></a>
         </li>
         {% endif %}
+        
+        {% if request.user.is_staff %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'company' %}">Search Companies</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'experience' %}">Experiences</a>
         </li>
+        {% endif %}
+          
         <li class="nav-item">
           <a class="nav-link" href="{% url 'write' %}">Write</a>
         </li>
