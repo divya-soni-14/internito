@@ -1,14 +1,18 @@
 BRANCHES = [
-	'CSE', 
-	'ECE', 
-	'EEE', 
-	'MECH', 
-	'CHEM', 
-	'CIVIL', 
-	'MME', 
+	'CSE',
+	'ECE',
+	'EEE',
+	'MECH',
+	'CHEM',
+	'CIVIL',
+	'MME',
 	'BIOTECH'
 ]
-
+ADMIN_EMAILS=[
+	'ansari_841903@student.nitw.ac.in',
+	'muliya_871946@student.nitw.ac.in',
+	'hardik_821982@student.nitw.ac.in',
+]
 NAMES = [
 	'24*7 INNOVATION LABS',
 	'ABCO',
@@ -199,13 +203,13 @@ NAMES = [
 	'ZOMATO',
 	'ZOPPER',
 	'ZYCUS',
- 	'CSE', 
-	'ECE', 
-	'EEE', 
-	'MECH', 
-	'CHEM', 
-	'CIVIL', 
-	'MME', 
+ 	'CSE',
+	'ECE',
+	'EEE',
+	'MECH',
+	'CHEM',
+	'CIVIL',
+	'MME',
 	'BIOTECH'
 ]
 

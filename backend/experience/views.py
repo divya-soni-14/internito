@@ -1,15 +1,17 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from .models import *
-from .company import NAMES, BRANCHES, not_nitw
+from .company import *
 from .forms import RegisterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login,update_session_auth_hash,authenticate
 from django.contrib.auth.forms import PasswordChangeForm,PasswordResetForm
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+from django.views.generic import TemplateView,CreateView,DeleteView,ListView,DetailView,UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 from django.template.loader import render_to_string
 from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
@@ -72,7 +74,7 @@ def signin(request):
         return HttpResponseRedirect(reverse('verifycode',kwargs={'user':user}))
     else:
         return render(request,'login.html',context)
-    
+
 def sendcode(user,email):
     code=random.randrange(100000,999999)
     ad=Emailverify.objects.create(user=user,code=code,status=False)
@@ -84,7 +86,7 @@ def sendcode(user,email):
          'internito123@gmail.com',
          [email],
          fail_silently=False)
-    
+
 def verifycode(request,user):
 
     context={"msg":""}
@@ -127,9 +129,25 @@ def register(request):
             'message': message
         }
         return render(request, 'register.html', context=context)
-
+def feedback(request):
+    if request.method == "POST":
+        text=request.POST.get('feedback')
+        print(text)
+        send_mail(
+            'FeedBack',
+             '''Hey admin!! We recieved a feedback response from {}
+             {}'''.format(request.user.username,text),
+             'internito123@gmail.com',
+             ADMIN_EMAILS,
+             fail_silently=False)
+        return HttpResponseRedirect(reverse('feedback_reveive'))
+    else:
+        return render(request,'feedback.html')
+class FeedbackReceive(TemplateView):
+    template_name='tq.html'
 @login_required()
 def company(request):
+    msg_empty= False
     if request.method == 'POST':
         filter = request.POST['filter']
         filter = filter.strip()
@@ -213,19 +231,7 @@ def write(request):
             final_summary=suggestions,
         )
         temp.save()
-        user = request.user
-        is_current_user = False
-        if user.id == request.user.id:
-            is_current_user = True
-        posts = Experience.objects.filter(user=user)
-        count = len(posts)
-        context = {
-            'user': user,
-            'is_current_user': is_current_user,
-            'posts': posts,
-            'count': count
-        }
-        return render(request, 'profile.html', context)
+        return HttpResponseRedirect(reverse('profile',kwargs={'username':request.user.username}))
     return render(request, 'write.html', {'message': False, 'companies': NAMES[:len(NAMES)-8]})
 
 @login_required()
@@ -269,23 +275,7 @@ def edit(request, id):
             post.final_summary = request.POST.get('suggestions')
             post.summary = post.ot_summary[:113]
             post.save()
-            user = request.user
-            is_current_user = False
-            if user.id == request.user.id:
-                is_current_user = True
-            posts = Experience.objects.filter(user=user)
-            count = len(posts)
-            msg_empty = False
-            if count == 0:
-                msg_empty = 'No posts made by the user till now.'
-            context = {
-                'user': user,
-                'is_current_user': is_current_user,
-                'posts': posts,
-                'count': count,
-                'msg_empty': msg_empty
-            }
-            return render(request, 'profile.html', context)
+            return HttpResponseRedirect(reverse('profile',kwargs={'username':request.user.username}))
         else:
             return render(request, 'write.html', {'message': "edit your current Experience", 'post': post, 'companies': NAMES[:len(NAMES)-8], 'update': True})
     else:
@@ -298,23 +288,7 @@ def delete(request, id):
         response = Experience.objects.get(pk=id)
         username = response.user.username
         response.delete()
-        user = User.objects.get(username=username)
-        is_current_user = False
-        if user.id == request.user.id:
-            is_current_user = True
-        posts = Experience.objects.filter(user=user)
-        count = len(posts)
-        msg_empty = False
-        if count == 0:
-            msg_empty = 'No posts made by the user till now.'
-        context = {
-            'user': user,
-            'is_current_user': is_current_user,
-            'posts': posts,
-            'count': count,
-            'msg_empty': msg_empty
-        }
-        return render(request, 'profile.html', context)
+        return HttpResponseRedirect(reverse('profile',kwargs={'username':request.user.username}))
     except Experience.DoesNotExist:
         responses = Experience.objects.all().order_by('-id')[:3]
         return render(request, 'home.html', {'responses': responses})

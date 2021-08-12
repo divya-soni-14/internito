@@ -32,3 +32,8 @@ class Emailverify(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     code=models.IntegerField(null=True,blank=True)
     status=models.BooleanField(null=True,blank=True)
+class FeedBack(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    feedback=models.CharField(max_length=250)
+    def __str__(self):
+        return self.user.username

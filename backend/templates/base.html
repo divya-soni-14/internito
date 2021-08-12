@@ -43,7 +43,7 @@
     style="color: #76b852"
       class="logoAnchor navbar-brand" href="{% url 'home' %}"
       ><strong>inter<big>N</big>ito</strong></a>
-    
+
     <button
       class="navbar-toggler"
       type="button"
@@ -75,8 +75,13 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
-        
+
         {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="ml-2 btn btn-outline-danger" href="{% url 'feedback' %}"
+            >Feedback</a
+          >
+        </li>
         <li class="nav-item">
           <a class="ml-2 btn btn-outline-danger" href="{% url 'logout' %}"
             >Log Out</a
@@ -91,7 +96,7 @@
         <li class="nav-item">
           <a class="ml-2 btn btn-outline-secondary" href="{% url 'register' %}">Register</a>
         </li>
-        
+
         {% endif %}
       </ul>
     </div>
@@ -107,14 +112,14 @@
           text-decoration: none;
           color: black;
         }
-  
+
         a:hover {
           color: black;
         }
       </style>
       <div class="container" style="text-align: center">
         <p>
-          Copyright © 2021 interNito 
+          Copyright © 2021 interNito
         </p>
         <small style="font-weight: 550">Made with &#x2764; by
           <a target="_blank" href="https://www.linkedin.com/in/sufiyan-ansari-nitw/">
