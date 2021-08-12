@@ -130,6 +130,27 @@
       {% endif %}
     </div>
     <div class="col-lg-9">
+      
+      {% if request.user.is_staff %}
+
+      <div class="col">
+        <div class="card post-card mt-4">
+          <div class="card-body">
+            <h4 class="card-title">All Resistered Users</h4>
+      {% for site_user in all_users %}
+      
+      {% if not site_user.is_staff %}
+      <p>{{site_user.first_name}} {{site_user.last_name}} : <a href="{% url 'profile' site_user.username %}" class="ml-3 btn-sm btn-primary">{{site_user.username}}</a></p>        
+      {% endif %}
+        
+      {% endfor %}
+        </div>
+        </div>
+        </div>
+
+      {% else %}
+
+
       {% if msg_empty %} <br><br>
       <p><strong>{{msg_empty}}</strong></p>
       {% endif %}
@@ -181,7 +202,9 @@
           </div>
         </div>
       </div>
-      {% endfor %}
+      {% endfor %}        
+      {% endif %}
+        
     </div>
   </div>
 </div>
