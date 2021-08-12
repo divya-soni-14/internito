@@ -250,7 +250,9 @@ def about(request):
 def post(request, id):
     try:
         response = Experience.objects.get(pk=id)
-        return render(request, 'post.html', {'response': response})
+        if response.user == request.user or request.user.is_staff:
+            return render(request, 'post.html', {'response': response})
+        return HttpResponseRedirect(reverse('home'))
     except Experience.DoesNotExist:
         return HttpResponseRedirect(reverse('home'))
 
@@ -318,8 +320,11 @@ def profile(request, username):
             'count': count,
             'msg_empty': msg_empty,
         }
-        if request.user.is_staff:
-            context['all_users'] = User.objects.all().order_by('first_name')
+        if user.is_staff:
+            context['all_users'] = User.objects.all().order_by('pk')
+            context['staff_id'] = True
+        elif request.user.is_staff:
+            context['staff_id'] = False
         elif not is_current_user:
             return HttpResponseRedirect(reverse('home'))
         return render(request, 'profile.html', context)

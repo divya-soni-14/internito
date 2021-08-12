@@ -108,7 +108,12 @@
             <strong>Name: </strong>{{ user.first_name }} {{ user.last_name }}
           </p>
           <p class="abt-info-title">
-            <strong>Email: </strong>{{ user.username }} @student.nitw.ac.in
+            <strong>Email: </strong>
+            {% if request.user.is_staff and staff_id %}
+            {{ user.email }}
+            {% else %}
+            {{ user.username }} @student.nitw.ac.in
+            {% endif %}
           </p>
           <p class="abt-info-title">
             <strong>Username: </strong>{{ user.username }}
@@ -130,19 +135,20 @@
       {% endif %}
     </div>
     <div class="col-lg-9">
-      
-      {% if request.user.is_staff %}
+
+      {% if request.user.is_staff and staff_id %}
 
       <div class="col">
         <div class="card post-card mt-4">
           <div class="card-body">
-            <h4 class="card-title">All Resistered Users</h4>
+            <h4 class="card-title">All Resistered Users : {{ all_users|length }}</h4>
       {% for site_user in all_users %}
-      
-      {% if not site_user.is_staff %}
-      <p>{{site_user.first_name}} {{site_user.last_name}} : <a href="{% url 'profile' site_user.username %}" class="ml-3 btn-sm btn-primary">{{site_user.username}}</a></p>        
+        <p> {{ forloop.counter }}. )
+      {% if site_user.is_staff %}
+            <strong>Super User :</strong>
       {% endif %}
-        
+      <a href="{% url 'profile' site_user.username %}" >{{site_user.first_name}} {{site_user.last_name}}</a></p>
+
       {% endfor %}
         </div>
         </div>
@@ -202,9 +208,9 @@
           </div>
         </div>
       </div>
-      {% endfor %}        
+      {% endfor %}
       {% endif %}
-        
+
     </div>
   </div>
 </div>

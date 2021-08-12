@@ -6,7 +6,7 @@
   body{
     font-family: 'Poppins', sans-serif!important;
 }
-  
+
 
   .card-title {
     font-weight: 600;
@@ -26,6 +26,13 @@
   .blog-text {
     margin-bottom: 20px;
   }
+  pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: keep-all;       /* Internet Explorer 5.5+ */
+}
 </style>
 
 <div class="container-fluid" style="font-family: 'Poppins', sans-serif">
@@ -33,7 +40,7 @@
     <div class="col-lg-9">
       <div class="post-card mt-4">
         <div class="card-body">
-          
+
 
           <!-- ONLINE TEST -->
           {% if response.ot_summary %}
@@ -48,7 +55,7 @@
             <hr />
 
 
-            
+
             {% if response.ot_question1 %}
               <h5 class="card-text">Online Test Question - 1</h3>
               <p class="card-text blog-text">
@@ -56,16 +63,16 @@
 {{ response.ot_question1 }}
                 </pre>
               </p>
-              
+
               {% if response.ot_question1_link %}
               <p class="card-text blog-text">
                 To get some idea and source,  Follow this LINK : <a href="{{response.ot_question1_link}}" target="_blank"> Question 1 Source </a>
               </p>
               {% endif %}
-                
+
             <hr />
             {% endif %}
-              
+
             {% if response.ot_question2 %}
               <h5 class="card-text">Online Test Question - 2</h3>
               <p class="card-text blog-text">
@@ -89,7 +96,7 @@
 {{ response.ot_question3 }}
                 </pre>
               </p>
-              
+
               {% if response.ot_question3_link %}
               <p class="card-text blog-text">
                 To get some idea and source,  Follow this LINK : <a href="{{response.ot_question3_link}}" target="_blank"> Question 3 Source </a>
@@ -111,10 +118,10 @@
               {% endif %}
             <hr />
             {% endif %}
-            </details>  
+            </details>
 
           {% endif %}
-            
+
 
           <!-- ROUND 1 Interview -->
           {% if response.round1_details %}
@@ -129,7 +136,7 @@
             </details>
           {% endif %}
 
-        
+
           <!-- ROUND 2 Interview -->
           {% if response.round2_details %}
             <details>
