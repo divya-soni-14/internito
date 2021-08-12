@@ -36,16 +36,16 @@ def password_reset_request(request):
 					email_template_name = "password/password_reset_email.txt"
 					c = {
 					"email":user.email,
-					'domain':'127.0.0.1:8000',
+					'domain':'internito.pythonanywhere.com',
 					'site_name': 'Website',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
 					'token': default_token_generator.make_token(user),
-					'protocol': 'http',
+					'protocol': 'https',
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'barebears567@gmail.com' , [user.email], fail_silently=False)
+						send_mail(subject, email, 'internito123@gmail.com' , [user.email], fail_silently=False)
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					return redirect ("/password_reset/done/")
@@ -136,7 +136,7 @@ def feedback(request):
         send_mail(
             'FeedBack',
              '''Hey admin!! We recieved a feedback response from {}
-             {}'''.format(request.user.username,text),
+{}'''.format(request.user.username,text),
              'internito123@gmail.com',
              ADMIN_EMAILS,
              fail_silently=False)

@@ -114,9 +114,12 @@
             <strong>Username: </strong>{{ user.username }}
           </p>
           <p class="abt-info-title"><strong>Posts: </strong>{{count}}</p>
+          {% if is_current_user %}
           <p><a class="btn btn-outline-primary" href="{% url 'change_password' %}">Change Password</a></p>
+          {% endif %}
         </div>
       </div>
+      {% if is_current_user %}
       <div class="card post-card mt-4">
         <div class="card-body">
           <h5 class="card-title">Have Something To Share?</h5>
@@ -124,6 +127,7 @@
           <p><a class="btn btn-outline-success" href="{% url 'write' %}">Write Now!!</a></p>
         </div>
       </div>
+      {% endif %}
     </div>
     <div class="col-lg-9">
       {% if msg_empty %} <br><br>

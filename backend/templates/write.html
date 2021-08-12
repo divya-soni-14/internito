@@ -138,16 +138,22 @@
                         <input type="text cgpa" value="{{post.cgpa_cutoff}}" type="cgpa" name="cgpa" placeholder="CGPA"  class="form-control" required>
                     </div>
             </div>
-
             <div class="form-group row">
-                <label for="date" class="col-sm-2 col-form-label">Rough Date</label>
+                <label for="batch" class="col-sm-2 col-form-label">Experience Type</label>
                 <div class="col-sm-10">
-                    <input type="text date" type="date" name="period" value="{{post.period}}" placeholder=""  class="form-control" required>
-                    <small>You can give exact date like dd/mm/yyyy or if not sure, feel free to write in general for example August 2021 1st Week</small>
+                    <select type="select" name="period" placeholder="Batch"  class="form-control" required>
+                        <option value="Intern" 
+                        {% ifequal 'Intern' post.period %} selected
+                            
+                        {% endifequal %}
+                            >Intern</option>
+                        <option value="Placement" {% ifequal 'Placement' post.period %} selected
+                            
+                        {% endifequal %}
+                        >Placement</option>
+                    </select>
                 </div>
-                
             </div>
-
             <div class="form-group row">
                 <label for="branches" class="col-sm-2 col-form-label">Eligible Branches</label>
                 <div class="col-sm-10">
