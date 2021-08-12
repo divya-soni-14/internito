@@ -117,11 +117,18 @@
           <p><a class="btn btn-outline-primary" href="{% url 'change_password' %}">Change Password</a></p>
         </div>
       </div>
+      <div class="card post-card mt-4">
+        <div class="card-body">
+          <h5 class="card-title">Have Something To Share?</h5>
+          <p class="abt-info-title">
+          <p><a class="btn btn-outline-success" href="{% url 'write' %}">Write Now!!</a></p>
+        </div>
+      </div>
     </div>
     <div class="col-lg-9">
       {% if msg_empty %} <br><br>
       <p><strong>{{msg_empty}}</strong></p>
-      {% endif %} 
+      {% endif %}
       {% for post in posts %}
       <div class="row">
         <div class="col">
@@ -142,11 +149,11 @@
               <a href="{% url 'edit' post.pk %}" class="btn btn-outline-success"
                 >Edit</a
               >
-              <a href="#popup1" id="delete-btn" class="btn btn-outline-danger"
+              <a href="#popup{{forloop.counter}}" id="delete-btn" class="btn btn-outline-danger"
                 >Delete</a
               >
               <div
-                id="popup1"
+                id="popup{{forloop.counter}}"
                 class="popup p-5 shadow-lg"
                 style="
                   border: 1px black solid;
