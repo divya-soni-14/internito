@@ -20,12 +20,16 @@ from django.utils.encoding import force_bytes
 # Create your views here.
 import random
 from django.core.mail import send_mail
+
+
 @login_required()
 def home(request):
     # if not request.user.is_staff:
     #     return HttpResponseRedirect(reverse('write'))
     responses = Experience.objects.all().order_by('-id')[:3]
     return render(request, 'home.html', {'responses': responses})
+
+
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
@@ -98,6 +102,7 @@ def sendcode(user,email):
          [email],
          fail_silently=False)
 
+
 def verifycode(request,user):
 
     context={"msg":""}
@@ -112,6 +117,7 @@ def verifycode(request,user):
         else:
             context["msg"]="Wrong Code Entered"
     return render(request,"verifycode.html",context)
+
 
 def register(request):
     if request.method == "POST":
@@ -140,6 +146,9 @@ def register(request):
             'message': message
         }
         return render(request, 'register.html', context=context)
+
+
+@login_required()
 def feedback(request):
     if request.method == "POST":
         text=request.POST.get('feedback')
@@ -154,8 +163,11 @@ def feedback(request):
         return HttpResponseRedirect(reverse('feedback_reveive'))
     else:
         return render(request,'feedback.html')
+
 class FeedbackReceive(TemplateView):
     template_name='tq.html'
+
+
 @login_required()
 def company(request):
     if not request.user.is_staff:
@@ -181,17 +193,35 @@ def company(request):
             msg_empty = False
             if len(responses) == 0:
                 msg_empty = 'OOPS! No responses for the query you are looking for.'
-        return render(request, 'experience.html', {'responses': responses, 'message': message, 'msg_empty': msg_empty})
+        context = {
+            'responses': responses,
+            'message': message,
+            'msg_empty': msg_empty,
+            'filter_done' : True
+        }
+        return render(request, 'experience.html', context)
     elif request.method == 'GET':
         return render(request, 'filter.html', {'companies': NAMES})
+
 
 @login_required()
 def experience(request):
     if not request.user.is_staff:
         return HttpResponseRedirect(reverse('write'))
-    responses = Experience.objects.order_by('company', '-id')
-    message = 'All Interview Experiences'
-    return render(request, 'experience.html', {'responses': responses, 'message': message})
+    context = {}
+    filter = request.GET.get('filter')
+    if filter is not None and filter == 'company_wise':
+        responses = Experience.objects.order_by('company', '-id')
+        context['responses'] = responses
+        context['company_wise'] = True
+    else:
+        responses = Experience.objects.order_by('-id')
+        context['responses'] = responses
+        context['company_wise'] = False
+    context['message'] = 'All Interview Experiences'
+    context['filter_done'] = False
+    return render(request, 'experience.html', context)
+
 
 @login_required()
 def write(request):
@@ -246,9 +276,11 @@ def write(request):
         return HttpResponseRedirect(reverse('profile',kwargs={'username':request.user.username}))
     return render(request, 'write.html', {'message': False, 'companies': NAMES[:len(NAMES)-8]})
 
+
 @login_required()
 def about(request):
     return render(request, 'about.html', {})
+
 
 @login_required()
 def post(request, id):
