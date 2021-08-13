@@ -69,10 +69,14 @@ def signin(request):
                     print("hello")
                     login(request,user)
                     return HttpResponseRedirect(reverse('home'))
-            elif ev==1:
+                else:
+                    ev=Emailverify.objects.filter(user=user).delete()
+                    sendcode(user,user.email)
+                    return HttpResponseRedirect(reverse('verifycode',kwargs={'user':user}))
+            elif user is None:
                 context["msg"]="Username or Password Wrong"
                 return render(request,'login.html',context)
-            elif ev>1:
+            if ev>=1:
                 ev=Emailverify.objects.filter(user=user).delete()
             sendcode(user,user.email)
             return HttpResponseRedirect(reverse('verifycode',kwargs={'user':user}))

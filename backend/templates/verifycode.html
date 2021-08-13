@@ -94,7 +94,15 @@
 
 <div class="card mt-5" style="max-width: 35rem; margin: 20px auto;">
 	<div class="card-body justify-content-center">
-	    <hr>
+	    {% if msg %}
+      	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        		{{msg}}
+        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          		<span aria-hidden="true">&times;</span>
+        	</button>
+      	</div>
+      	{% endif %}
+      	<hr>
 		<p class="font-weight-bold mt-3">Code has been sent to your email please verify it by entering it here..(Please check spam Folder also!!)</p>
         <hr>
         <form class="" method="POST">
