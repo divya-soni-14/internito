@@ -109,7 +109,7 @@
           </p>
           <p class="abt-info-title">
             <strong>Email: </strong>
-            {% if request.user.is_staff and staff_id %}
+            {% if user.is_staff %}
             {{ user.email }}
             {% else %}
             {{ user.username }} @student.nitw.ac.in
