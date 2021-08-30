@@ -5,7 +5,7 @@ class Experience(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     name = models.CharField(max_length=80)
     branch = models.CharField(max_length=255,blank=True)
-    cgpa_cutoff = models.FloatField(blank=True)
+    cgpa_cutoff = models.CharField(max_length=255,blank=True)
     resume = models.TextField(blank=True)
     batch = models.CharField(max_length=255, blank=True)
     company = models.CharField(max_length=255,blank=False)
