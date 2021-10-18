@@ -209,7 +209,7 @@ def experience(request):
     if not request.user.is_staff:
         return HttpResponseRedirect(reverse('write'))
     context = {}
-    filter = request.GET.get('filter')
+    filter = request.POST.get('filter')
     if filter is not None and filter == 'company_wise':
         responses = Experience.objects.order_by('company', '-id')
         context['responses'] = responses
